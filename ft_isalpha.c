@@ -6,23 +6,23 @@
 /*   By: shenders <shenders@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 14:17:37 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/05 17:09:31 by shenders      ########   odam.nl         */
+/*   Updated: 2022/10/14 13:15:58 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ctype.h>
 #include <stdio.h>
 
-int	ft_isalpha(int arg);
+int	ft_isalpha(int c);
 
-int	ft_isalpha(int arg)
+int	ft_isalpha(int c)
 {
-	if ((arg >= 97 && arg <= 122) || (arg >= 65 && arg <= 90))
+	if ((c >= 97 && c <= 122) || (c >= 65 && c <= 90))
 		return (1);
 	return (0);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	printf("%d\n", ft_isalpha('a'));
 	printf("%d\n", ft_isalpha('B'));
@@ -34,4 +34,4 @@ int	main(void)
 	printf("%d\n", isalpha('1'));
 	printf("%d\n", isalpha(1));
 	printf("%d\n", isalpha('&'));
-}
+}*/

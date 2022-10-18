@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 12:12:45 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/11 12:18:30 by shenders      ########   odam.nl         */
+/*   Updated: 2022/10/14 13:22:42 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int	ft_tolower(int c)
 	return (c);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	printf("%c", ft_tolower('C'));
 	printf("%c", ft_tolower('2'));
 	printf("%c", ft_tolower('T'));
 	printf("%c", ft_tolower('t'));
 	printf("%c", ft_tolower('*'));
-}	
+}*/	

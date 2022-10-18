@@ -6,16 +6,16 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 17:36:26 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/05 17:45:05 by shenders      ########   odam.nl         */
+/*   Updated: 2022/10/14 13:30:43 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <string.h>
 
-unsigned long	ft_strlen(const char *s);
+size_t	ft_strlen(const char *s);
 
-unsigned long	ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
 	unsigned long	i;
 
@@ -25,11 +25,11 @@ unsigned long	ft_strlen(const char *s)
 	return (i);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	printf("%lu", ft_strlen("Hello"));
 	printf("%lu", ft_strlen("Hello"));
 	printf("\n");
 	printf("%lu", strlen("Hello"));
 	printf("%lu", strlen("Hello"));
-}
+}*/

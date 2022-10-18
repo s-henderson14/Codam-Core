@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 12:06:11 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/11 12:19:24 by shenders      ########   odam.nl         */
+/*   Updated: 2022/10/14 13:21:59 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int	ft_toupper(int c)
 		return (c);
 }
 
-int	main(void)
+/*int	main(void)
 {	
 	printf("%c", ft_toupper('c'));
 	printf("%c", ft_toupper('!'));
 	printf("%c", ft_toupper('2'));
 	printf("%c", ft_toupper('z'));
 	printf("%c", ft_toupper('C'));
-}
+}*/

@@ -1,45 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_memcpy.c                                        :+:    :+:            */
+/*   ft_strdup.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/06 09:28:32 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/16 19:10:28 by shenders      ########   odam.nl         */
+/*   Created: 2022/10/16 17:58:06 by shenders      #+#    #+#                 */
+/*   Updated: 2022/10/17 18:49:04 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
-void	*ft_memcpy(void *dst, const void *src, size_t n);
+char	*ft_strdup(const char *s1);
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_strdup(const char *s1)
 {
-	char	*pdst;
-	char	*psrc;
+	char	*buff;
+	int		len;
 
-	pdst = (char *) dst;
-	psrc = (char *) src;
-	if (psrc == NULL)
-		return (NULL);
-	while (n != 0)
+	len = 0;
+	while (s1[len] != '\0')
+		len++;
+	buff = (char *) malloc (len * sizeof(char) + 1);
+	if (sizeof(buff) != sizeof(s1))
+		return (0);
+	else
 	{	
-		*pdst = *psrc;
-		pdst++;
-		psrc++;
-		n--;
-	}
-	return (dst);
+		memcpy(buff, s1, len);
+		buff[len] = '\0';
+		return (buff);
+	}		
 }
 
 /*int	main(void)
 {
-	char	dst[] = "Hello";
-	char	src[] = "Tryit";
+	char	string[] = "Ya dun know";
 
-	printf("%s\n", ft_memcpy(dst, src, 3));
-	printf("%s\n", memcpy(dst, src, 3));
-	return (0);
+	printf("%s\n", ft_strdup(string));
+	printf("%s\n", strdup(string));
 }*/

@@ -6,47 +6,48 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 14:46:54 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/12 16:13:31 by shenders      ########   odam.nl         */
+/*   Updated: 2022/10/18 19:43:41 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <string.h>
+#include <strings.h>
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	unsigned int	i;
+	size_t	d_len;
+	size_t	s_len;
+	int		i;
 
+	d_len = strlen(dst);
+	s_len = strlen(src);
 	i = 0;
-	if (*src == '\0')
-		return (dstsize);
-	while (*dst != '\0')
-		dst++;
-	while (i < dstsize)
+	if (dstsize == 0)
+		return (s_len);
+	else if (dstsize < d_len)
+		return (s_len + dstsize);
+	else
 	{	
-		*dst = *src;
-		dst++;
-		src++;
-		i++;
+		while (*(src + i) != '\0' && d_len + 1 < dstsize)
+		{	
+			*(dst + d_len) = *(src + i);
+			d_len++;
+			i++;
+		}
 	}
-	*dst = '\0';
-	return (strlen(dst));
+	*((dst) + d_len) = '\0';
+	return (d_len + s_len);
 }
 
-int	main(void)
+/*int	main(void)
 {
-	char	dest[] = "Super";
-	char	src[] = "Cat";
-	//char	sr0[] = "";
-	size_t	nb = 3;
+	char	dest[12] = "Super";
+	const char	src[] = "Cat";
+	size_t	n = 7;
 
-	//printf("%lu", ft_strlcat(dest, src, nb));
-	printf("%lu", ft_strlcat(dest, src, nb));
-	//printf("%lu", ft_strlcat(dest, sr0, nb));
-	printf("\n");
-	//printf("%lu", strlcat(dest, src, nb));
-	printf("%lu", strlcat(dest, src, nb));
-	//printf("%lu", strlcat(dest, sr0, nb));
-}
+    printf("%lu\n", ft_strlcat(dest, src, n));
+	printf("%lu\n", strlcat(dest, src, n));
+}*/

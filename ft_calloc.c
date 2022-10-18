@@ -1,45 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_memcpy.c                                        :+:    :+:            */
+/*   ft_calloc.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/06 09:28:32 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/16 19:10:28 by shenders      ########   odam.nl         */
+/*   Created: 2022/10/16 19:28:31 by shenders      #+#    #+#                 */
+/*   Updated: 2022/10/18 20:31:17 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
+#include <stdlib.h>
 #include <string.h>
 
-void	*ft_memcpy(void *dst, const void *src, size_t n);
+void	*ft_calloc(size_t count, size_t size);
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char	*pdst;
-	char	*psrc;
+	void	*mem;
 
-	pdst = (char *) dst;
-	psrc = (char *) src;
-	if (psrc == NULL)
+	mem = (void *) malloc (count * size);
+	if (!mem)
 		return (NULL);
-	while (n != 0)
-	{	
-		*pdst = *psrc;
-		pdst++;
-		psrc++;
-		n--;
-	}
-	return (dst);
+	memset(mem, 0, count);
+	return (mem);
 }
 
-/*int	main(void)
+/*int main(void)
 {
-	char	dst[] = "Hello";
-	char	src[] = "Tryit";
-
-	printf("%s\n", ft_memcpy(dst, src, 3));
-	printf("%s\n", memcpy(dst, src, 3));
-	return (0);
+    printf("%s\n", ft_calloc(5, 1));
+    printf("%s\n", calloc(5, 1));
 }*/

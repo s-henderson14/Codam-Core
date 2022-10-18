@@ -6,25 +6,25 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 17:04:14 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/05 17:30:53 by shenders      ########   odam.nl         */
+/*   Updated: 2022/10/18 18:12:00 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <ctype.h>
 
-int	ft_isalnum(int arg);
+int	ft_isalnum(int c);
 
-int	ft_isalnum(int arg)
+int	ft_isalnum(int c)
 
 {
-	if ((arg >= 97 && arg <= 122) || (arg >= 65 && arg <= 90)
-		|| (arg >= 48 && arg <= 57))
+	if ((c >= 97 && c <= 122) || (c >= 65 && c <= 90)
+		|| (c >= 48 && c <= 57))
 		return (1);
 	return (0);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	printf("%d", ft_isalnum('a'));
 	printf("%d", ft_isalnum('B'));
@@ -39,4 +39,4 @@ int	main(void)
 	printf("%d", isalnum('0'));
 	printf("%d", isalnum(345));
 	printf("%d", isalnum(234));
-}
+}*/
