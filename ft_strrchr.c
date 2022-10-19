@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 15:53:18 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/19 16:10:14 by shenders      ########   odam.nl         */
+/*   Updated: 2022/10/19 17:31:30 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,32 +21,26 @@ char	*ft_strrchr(const char *s, int c)
 	size_t	i;
 	char	*ps;
 
-	ps = (char *)s;
 	i = ft_strlen(s);
+	ps = (char *)s;
+	if (ps[i] == '\0' && (char) c == '\0')
+		return (&ps[i]);
 	while (i > 0)
 	{	
-		if (ps[i] == '\0' &&  (char) c == '\0')
-			return (&ps[i]);
-		i--;
 		if (ps[i] == (char) c)
 			return (&ps[i]);
+		i--;
 	}
+	if (ps[i] == (char) c)
+		return (&ps[i]);
 	return (0);
 }
 
 /*int	main(void)
 {
-	char	string[] = "This is my string";
+	char	string[] = "";
 
-	printf("%s\n", ft_strrchr(string, 'i'));
-	printf("%s\n", ft_strrchr(string, 'O'));
-	printf("%s\n", ft_strrchr(string, 'g'));
 	printf("%s\n", ft_strrchr(string, '\0'));
-	printf("%s\n", ft_strrchr(string, 't'));
 	printf("\n");
-	printf("%s\n", strrchr(string, 'i'));
-	printf("%s\n", strrchr(string, 'O'));
-	printf("%s\n", strrchr(string, 'g'));
 	printf("%s\n", strrchr(string, '\0'));
-	printf("%s\n", strrchr(string, 't'));
 }*/
