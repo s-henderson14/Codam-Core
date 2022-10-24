@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 10:09:47 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/19 17:47:16 by shenders      ########   odam.nl         */
+/*   Updated: 2022/10/14 13:25:46 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,29 @@ void	*ft_memchr(const void *s, int c, size_t n);
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned int	i;
-	char			*ps;
-	unsigned char	pc;
-
+	unsigned char	*ps;
+	int	i;
+	
 	i = 0;
-	pc = (unsigned char) c;
-	ps = (void *) s;
+	ps = (unsigned char *) s;
 	if (n == 0)
 		return (0);
-	while (i < n)
+	while (n > 0)
 	{	
-		if (*ps == pc)
-			return (ps);
-		else
-		{	
-			ps++;
-			i++;
-		}
+		if (*(ps + i) == (unsigned char)c)
+			return (ps + i);
+		i++;
+		n--;
 	}
 	return (0);
 }
 
 /*int	main(void)
 {
-	char	string[] = "Finish part one today";
+	int tab[7] = {-49, 49, 1, -1, 0, -2, 2};
+	//char    string[] = "Finish part one today";
+	
+	printf("%s", (char *)ft_memchr(tab, -1, 7));
 
 	printf("%s\n", ft_memchr(string, 'o', 13));
 	printf("%s\n", ft_memchr(string, 'o', 12));

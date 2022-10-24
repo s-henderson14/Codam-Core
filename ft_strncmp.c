@@ -9,7 +9,6 @@
 /*   Updated: 2022/10/19 17:45:47 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include <stdio.h>
 #include <string.h>
 #include "libft.h"
@@ -21,7 +20,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	unsigned int	i;
 	unsigned char 	*p1;
 	unsigned char	*p2;
-	
+
 	p1 = (unsigned char *)s1;
 	p2 = (unsigned char *)s2;
 	i = 0;

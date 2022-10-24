@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <stdio.h>
 #include <string.h>
 #include <strings.h>
@@ -20,34 +21,30 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	d_len;
 	size_t	s_len;
-	int		i;
-
-	d_len = strlen(dst);
-	s_len = strlen(src);
+	int	i;
+	char	*ps;
+	
+	ps = (char *) src;
+	d_len = ft_strlen(dst);
+	s_len = ft_strlen(src);
 	i = 0;
-	if (dstsize == 0)
-		return (s_len);
-	else if (dstsize < d_len)
-		return (s_len + dstsize);
-	else
+	if (dstsize - d_len < s_len)
+		return (s_len + ft_strlen(dst));	
+	while (dstsize >= (d_len + 1))
 	{	
-		while (*(src + i) != '\0' && d_len + 1 < dstsize)
-		{	
-			*(dst + d_len) = *(src + i);
-			d_len++;
-			i++;
-		}
+		dst[d_len + i] = ps[i];
+		i++;
+		dstsize--;
 	}
-	*((dst) + d_len) = '\0';
-	return (d_len + s_len);
+	dst[d_len + i] = '\0';
+	return (dstsize + s_len);
 }
 
 /*int	main(void)
 {
-	char	dest[12] = "Super";
-	const char	src[] = "Cat";
-	size_t	n = 7;
+	char	dest[14] = "a";
+	const char src[] = "lorem ipsum dolor sit amet";
+	size_t	n = 15 ;
 
     printf("%lu\n", ft_strlcat(dest, src, n));
-	printf("%lu\n", strlcat(dest, src, n));
 }*/

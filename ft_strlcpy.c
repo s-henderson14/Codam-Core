@@ -12,37 +12,37 @@
 
 #include <stdio.h>
 #include <string.h>
+#include "libft.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {	
-	size_t	d_len;
 	size_t	s_len;
-	int		i;
-
-	d_len = strlen(dst);
-	s_len = strlen(src);
+	size_t	i;
+	char	*ps;
+	
+	ps = (char *)src;
+	s_len = ft_strlen(src);
 	i = 0;
-	if (dstsize < s_len)
+	if (dstsize < 1)
 		return (s_len);
-	else
+	
+	while (dstsize - 1 > 0 && ps[i])
 	{	
-		while (*(src + i) != '\0' && d_len < dstsize)
-		{	
-			*(dst + i) = *(src + i);
-			i++;
-			d_len++;
-		}
-		*(dst + i) = '\0';
-		return (s_len);
-	}	
+		dst[i] = ps[i];
+		i++;
+		dstsize--;
+	}
+	dst[i] = '\0';
+	return (s_len);
 }
+
 /*int	main()
 {
 	char 	dstring[10] = "";
 	char	sstring[] = "Copy me";
 
-	printf("%lu", ft_strlcpy(dstring, sstring, 7));
-	printf("%lu", strlcpy(dstring, sstring, 7));
+	printf("%lu", ft_strlcpy(dstring, sstring, 8));
+	printf("%lu", strlcpy(dstring, sstring, 8));
 }*/	
