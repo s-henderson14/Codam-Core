@@ -9,7 +9,7 @@
 /*   Updated: 2022/10/17 18:49:04 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "libft.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -25,11 +25,11 @@ char	*ft_strdup(const char *s1)
 	while (s1[len] != '\0')
 		len++;
 	buff = (char *) malloc (len * sizeof(char) + 1);
-	if (sizeof(buff) != sizeof(s1))
+	if (!buff)
 		return (0);
 	else
 	{	
-		memcpy(buff, s1, len);
+		ft_memcpy(buff, s1, len);
 		buff[len] = '\0';
 		return (buff);
 	}		
