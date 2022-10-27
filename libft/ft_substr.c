@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 17:52:32 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/24 14:57:44 by shenders      ########   odam.nl         */
+/*   Updated: 2022/10/27 15:25:05 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,16 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*substr;
 	char	*buff;
+	char	*substr;
 	size_t	s_len;
 
 	s_len = ft_strlen(s);
-	buff = malloc(ft_strlen(s) * sizeof(char) + 1);
+	if (*s == '\0' || start > s_len)
+		return(ft_strdup(""));
+	if (start + len > s_len)
+		len = s_len - start;
+	buff = malloc(len  * sizeof(char) + 1);
 	substr = buff;
 	if (!buff)
 		return (0);
@@ -41,7 +45,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	ft_memcpy(substr, buff, len);
 	return (substr);
 }
-
 /*int	main(void)
 {
 	char	string[] = "Drinkin' this rain, I'm on fire.";

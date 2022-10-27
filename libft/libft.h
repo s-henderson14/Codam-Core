@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/18 19:50:05 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/24 14:31:32 by shenders      ########   odam.nl         */
+/*   Updated: 2022/10/27 16:05:22 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 char	*ft_strjoin(char const *s1, char const *s2);
+
+char    *ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 void	ft_putstr_fd(char *s, int fd);
 
