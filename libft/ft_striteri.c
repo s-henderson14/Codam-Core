@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strmapi.c                                       :+:    :+:            */
+/*   ft_striteri.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/27 15:35:05 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/27 16:37:43 by shenders      ########   odam.nl         */
+/*   Created: 2022/10/28 11:32:01 by shenders      #+#    #+#                 */
+/*   Updated: 2022/10/28 12:25:17 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
 	unsigned int	i;
-	char			*buff;
-	char			*temp;
 
-	if (!s || !f)
-		return (0);
-	buff = (char *)malloc(ft_strlen(s) + 1);
-	if (!buff)
-		return (0);
 	i = 0;
-	temp = (char *)s;
 	while (s[i])
-	{	
-		buff[i] = f(i, temp[i]);
+	{
+		f(i, &s[i]);
 		i++;
-	}
-	buff[i] = 0;
-	return (buff);
+	}	
 }

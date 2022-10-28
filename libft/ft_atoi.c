@@ -6,12 +6,14 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/14 17:49:25 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/24 10:52:11 by shenders      ########   odam.nl         */
+/*   Updated: 2022/10/28 14:14:30 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <limits.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 int	ft_atoi(const char *str);
 
@@ -24,11 +26,9 @@ int	ft_atoi(const char *str)
 	index = 0;
 	number = 0;
 	minus = 1;
-	if (!str)
-		return (0);
 	while ((str[index] == 32) || (str[index] >= 9 && str[index] <= 13))
 		index++;
-	if (str[index] == 45 || str[index] == 43)
+	if (str [index] == 43 || str[index] == 45)
 	{	
 		if (str[index] == 45)
 			minus = minus * (-1);
@@ -52,5 +52,6 @@ int	ft_atoi(const char *str)
     //char  string4[] = "    ++-3456 f";
     //char  string5[] = "   ++--5678";
 
-    printf("%d", ft_atoi(string5));
-}*/
+    printf("%d", ft_atoi((void *)0));
+	printf("%d", atoi((void *)0));
+}*/	
