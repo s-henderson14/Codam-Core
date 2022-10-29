@@ -16,27 +16,28 @@
 char	*ft_strtrim(char const *s1, char const *set);
 
 char	*ft_strtrim(char const *s1, char const *set)
-{
-	char			*ps1;
-	char			*pset;
-	char			*trmd;
+{	
 	unsigned int	i;
-
+	char		*start;
+	char		*end;
+	
 	i = 0;
-	ps1 = (char *) s1;
-	pset = (char *) set;
-	trmd = (char *) malloc(sizeof(char) * ft_strlen(s1));
-	if (!trmd)
+	start = (char *)&s1[i];
+	end =  (char *)&s1[ft_strlen(s1)] - 1; 
+	if (!s1)
 		return (0);
-	if (ft_strncmp(s1, set, ft_strlen (set)) == 0 && ft_strncmp(s1 + (ft_strlen(s1) - ft_strlen(set)) , set, ft_strlen(set) == 0))
-		trmd = ft_substr(s1, ft_strlen(set), ft_strlen(s1) - ft_strlen(set) * 2);
-	else if (ft_strncmp(s1, set, ft_strlen(set) == 0))
-		trmd = ft_substr(s1, ft_strlen(set), ft_strlen(s1) - ft_strlen(set));
-	else if (ft_strncmp(s1 + (ft_strlen(s1) - ft_strlen(set)), set, ft_strlen(set)) == 0)	
-		trmd = ft_substr(s1, i, ft_strlen(s1) - ft_strlen(set));
-	else
-		return (0);
-	return (trmd);
+	if (!set)
+		return ((char *)s1);
+	while ( start && end && i <= ft_strlen(set))
+	{	
+		if (&s1[i] == start)
+			start[i++];
+		else if (&s1[i] == end)
+			end[i--];
+		if ((!i) > 0 || (!i) < 0)
+		return ((char *)s1 + i);
+	}
+	return (0);
 }
 
 /*int	main()
