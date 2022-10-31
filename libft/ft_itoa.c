@@ -6,23 +6,27 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 11:57:14 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/30 18:05:17 by shenders      ########   odam.nl         */
+/*   Updated: 2022/10/31 14:31:04 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
-static	unsigned int num_len(int p)
+static	unsigned int	num_len(int p)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	if (p == 0)
-		return(0);
+		return (1);
 	if (p < 0)
+	{	
 		len += 1;
+		p = p * (-1);
+	}		
 	while (p != 0)
 	{	
 		p /= 10;
@@ -31,59 +35,33 @@ static	unsigned int num_len(int p)
 	return (len);
 }
 
-static char *rev_string(char *str)
-{
-	size_t 	i;
-	size_t	len;
-	char	*temp;
-
-	len = ft_strlen(str) - 1;
-	i = 0;
-	temp = str;
-	while (str && (i < len / 2))
-	{
-		temp[i] = str[len];
-		str[len] = str[i];
-		str[i] = temp[i];
-		i++;
-	}
-	return (str);
-}
-
 char	*ft_itoa(int n);
 
 char	*ft_itoa(int n)
 {
-	int		i;
-	int		number;	
-	char	*str;
 	size_t	len;
+	char	*str;
 
-	i = 0;
 	len = num_len(n);
-	number = 0;
-	if (!n)
-		return (0);
-	str = (char *) malloc(sizeof(char) * num_len(n));
+	str = (char *) malloc(sizeof(char) * len + 1);
 	if (!str)
 		return (0);
-	if (n == 0)
-	{	
-		str[i] = '0';
-		str[i++] = '\0';
-		return (str);
-	}
+	if (n == INT_MIN)
+		return (ft_memcpy(str, "-2147483648", 12));
+	str[len] = '\0';
 	if (n < 0)
-	{
-		n = n * (-1);
-		str[i++] = '-';
-	}
-	while(len > 0)	
 	{	
-		str[i] = (number / 10) + (str[i] + '0');
-		len--;
+		str[0] = '-';
+		n = n * (-1);
 	}
-	return (rev_string(str));
+	if (n == 0)
+		str[--len] = '0';
+	while (n != 0)
+	{	
+		str[--len] = (n % 10) + '0';
+		n = n / 10;
+	}
+	return (str);
 }
 
 /*int	main(void)
