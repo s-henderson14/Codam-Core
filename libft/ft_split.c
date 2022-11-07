@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/11/03 08:55:41 by shenders      #+#    #+#                 */
-/*   Updated: 2022/11/03 14:33:50 by shenders      ########   odam.nl         */
+/*   Created: 2022/11/07 13:34:27 by shenders      #+#    #+#                 */
+/*   Updated: 2022/11/07 16:38:43 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,57 +14,75 @@
 #include "libft.h"
 #include <stdlib.h>
 
-int	ft_occur(const char *str, char c)
+int word_count(const char *s, char c)
 {
 	int	count;
 	int	i;
-	
+
 	i =0;
 	count = 0;
-	while ( str[i] && str[i] == c)
-	i++;
-	while(str[i] && str[i] != c)
-	{	
-		if(str[i] != c && str[i + 1] == c)
-			count++;
-		i++;
+	while (s[i])
+	{
+		while (s[i] == c)
+			i++;
+		while(s[i] && s[i] != c)
+		{	i++;
+			if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
+			{
+				count++;
+				i++;
+			}
+		}
 	}
 	return (count);
-}	
+}
+
+int	word_len(const char *s, int  start, char c)
+{
+	int	count;
+
+	count = 0;
+	while (s[start])
+	{	
+		while (s[start] == c)
+			start++;
+		while (s[start] != c)
+		{	
+			count++;
+			start++;
+		}
+
+	}
+	return (count);
+}
 
 char	**ft_split(char const *s, char c);
 
 char	**ft_split(char const *s, char c)
 {
 	char	**temp;
-	char	*str;
 	int	i;
-	int	j;
-	int	start;
+	int start;
 
 	start = 0;
 	i = 0;
-	j = 0;
-	str = (char *)s;
-	temp = (char **) malloc(sizeof(char *) * ft_occur(s, c) + 1);
+	temp = (char **) malloc(sizeof(char *) * word_count(s, c) + 1);
 	if (!temp)
 		return(0);
 	while (s[i])
 	{	
-		if ( s[i] == c)
-		{
-			temp[j] = ft_substr((char *)s, start, i);
-			start = i + 1;
-			j++;
+		while (s[i] == c)
+			i++;
+		if (s[i] != c)
+		{	
+			*temp = ft_substr((char *)s, start + i, word_len(s, i, ' '));
+			if (!*temp)
+				free(*temp);
 		}
-		i++;	
-	}
-	if (temp)
-	{	
-		temp[ft_occur(s, c) + 1] = NULL;	
-		return (temp);
-	}
-	return (0);	
+		i++;
+	}	
+	temp[word_count(s, c)] = NULL;	
+	return (temp);
 
 }
 
