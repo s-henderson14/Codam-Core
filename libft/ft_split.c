@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/07 13:34:27 by shenders      #+#    #+#                 */
-/*   Updated: 2022/11/07 16:38:43 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/07 17:13:20 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int word_count(const char *s, char c)
 	int	count;
 	int	i;
 
-	i =0;
+	i = 0;
 	count = 0;
 	while (s[i])
 	{
@@ -56,32 +56,45 @@ int	word_len(const char *s, int  start, char c)
 	return (count);
 }
 
+void	free_m(char *strings)
+{
+	int	i;
+
+	i = 0;
+	while (strings[i] != '\0')
+	{	
+		free(strings);
+		i++;
+	}
+	free(strings);
+}
+
 char	**ft_split(char const *s, char c);
 
 char	**ft_split(char const *s, char c)
 {
 	char	**temp;
 	int	i;
+	int	j;
 	int start;
 
-	start = 0;
 	i = 0;
-	temp = (char **) malloc(sizeof(char *) * word_count(s, c) + 1);
+	start = 0;
+	j = word_count(s, c);
+	temp = (char **) malloc(sizeof(char *) * j + 1);
 	if (!temp)
 		return(0);
+	temp[j] = NULL;
 	while (s[i])
 	{	
 		while (s[i] == c)
 			i++;
 		if (s[i] != c)
-		{	
-			*temp = ft_substr((char *)s, start + i, word_len(s, i, ' '));
-			if (!*temp)
-				free(*temp);
-		}
-		i++;
-	}	
-	temp[word_count(s, c)] = NULL;	
+			temp[i] =  ft_substr((char *)s, start + i, word_len(s, i, ' '));
+		if (!temp[i])
+				free_m(*temp);
+	}
+	i++;	
 	return (temp);
 
 }
@@ -99,4 +112,26 @@ char	**ft_split(char const *s, char c)
 		i++;
 	}
 	printf("%d\n", i);
-}*/	
+	static char	*ft_stralloc(char *str, char c, int *k)
+{
+	char	*word;
+	int		j;
+
+	j = *k;
+	word = NULL;
+	while (str[*k] != '\0')
+	{
+		if (str[*k] != c)
+		{
+			while (str[*k] != '\0' && str[*k] != c)
+				*k += 1;
+			word = (char *)malloc(sizeof(char) * (*k + 1));
+			if (word == NULL)
+				return (NULL);
+			break ;
+		}
+		*k += 1;
+	}
+	ft_strcpy(word, str, c, j);
+	return (word);
+}
