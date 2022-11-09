@@ -27,11 +27,13 @@ int word_count(const char *s, char c)
 			i++;
 		while(s[i] && s[i] != c)
 		{	i++;
-			if (s[i] == c || s[i]  == '\0')
+			if (s[i] == c)
 			{	
 				count++;
 				i++;
 			}
+			else if (s[i] == '\0')
+				count++;
 		}
 	}
 	return (count);
