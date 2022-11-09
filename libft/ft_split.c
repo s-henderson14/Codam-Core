@@ -23,12 +23,12 @@ int word_count(const char *s, char c)
 	count = 0;
 	while (s[i])
 	{
-		while (s[i] == c)
+		while (s[i] && s[i] == c)
 			i++;
 		while(s[i] && s[i] != c)
 		{	i++;
-			if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
-			{
+			if (s[i] == c || s[i]  == '\0')
+			{	
 				count++;
 				i++;
 			}
@@ -94,7 +94,6 @@ char	**ft_split(char const *s, char c)
 		i++;
 	}	
 	return (temp);
-
 }
 
 /*int	main()
@@ -102,7 +101,7 @@ char	**ft_split(char const *s, char c)
 	int	i;
 	char **arr;
 	i = 0;
-	arr = ft_split("Sean was not yet sure how the function worked", ' ');
+	arr = ft_split("      split       this for   me  !       ", ' ');
 	while (arr[i])
 	{
 		printf("%s\n", arr[i]);
@@ -110,4 +109,3 @@ char	**ft_split(char const *s, char c)
 	}
 	printf("%d\n", i);
 }*/
-
