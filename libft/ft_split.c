@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/07 13:34:27 by shenders      #+#    #+#                 */
-/*   Updated: 2022/11/07 18:05:22 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/10 10:47:30 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "libft.h"
 
-int	word_count(const char *s, char c)
+/*int	word_count(const char *s, char c)
 {
 	int	count;
 	int	i;
@@ -34,6 +34,27 @@ int	word_count(const char *s, char c)
 				i++;
 			}
 			else if (s[i] == '\0')
+				count++;
+		}
+	}
+	return (count);
+}*/
+
+int	word_count(const char *s, char c)
+{
+	int	count;
+	int	i;
+
+	i = 0;
+	count = 0;
+	while (s[i])
+	{
+		while (s[i] && s[i] == c)
+			i++;
+		while (s[i] && s[i] != c)
+		{	
+			i++;
+			if (s[i] == c || s[i] == '\0')
 				count++;
 		}
 	}
@@ -60,12 +81,12 @@ void	free_m(char **strings)
 	int	i;
 
 	i = 0;
-	while (*strings[i] != '\0')
+	while (strings[i] != '\0')
 	{
 		free(strings[i]);
 		i++;
 	}
-	free(strings);
+	free(strings[i]);
 }
 
 char	**ft_split(char const *s, char c)
@@ -81,7 +102,6 @@ char	**ft_split(char const *s, char c)
 	temp = (char **) malloc(sizeof(char *) * (len + 1));
 	if (!temp)
 		return (NULL);
-	temp[len] = NULL;
 	while (start < len)
 	{	
 		if (s[i] != c)
@@ -93,16 +113,17 @@ char	**ft_split(char const *s, char c)
 			i = i + word_len(s + i, c);
 		}
 		i++;
-	}	
+	}
+	temp[len] = NULL;
 	return (temp);
 }
 
 /*int	main()
-{
+{	
 	int	i;
 	char **arr;
 	i = 0;
-	arr = ft_split("      split       this for   me  !       ", ' ');
+	arr = ft_split("Tripoille", 0);
 	while (arr[i])
 	{
 		printf("%s\n", arr[i]);

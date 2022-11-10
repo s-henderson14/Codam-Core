@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/18 19:50:05 by shenders      #+#    #+#                 */
-/*   Updated: 2022/11/03 09:47:29 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/10 16:35:45 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define LIBFT_H
 
 # include <stdlib.h>
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}					t_list;
 
 int		ft_isalnum(int c);
 
@@ -59,19 +65,15 @@ char	*ft_strnstr(const char *hs, const char *n, size_t len);
 
 char	*ft_strdup(const char *s1);
 
-char	*ft_strtrim(char const *s1, char const *set);
-
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 char	*ft_strjoin(char const *s1, char const *s2);
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*));
-
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-
 void	ft_putstr_fd(char *s, int fd);
+
+char	*ft_strtrim(char const *s1, char const *set);
 
 void	ft_putchar_fd(char c, int fd);
 
@@ -81,6 +83,14 @@ void	ft_putnbr_fd(int n, int fd);
 
 char	*ft_itoa(int n);
 
+void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+
 char	**ft_split(char const *s, char c);
+
+t_list	*ft_lstnew(void *content);
+
+void	ft_lstadd_front(t_list **lst, t_list *new);
 
 #endif

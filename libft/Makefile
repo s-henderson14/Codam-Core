@@ -6,7 +6,7 @@
 #    By: shenders <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/14 09:50:25 by shenders      #+#    #+#                  #
-#    Updated: 2022/11/03 09:48:12 by shenders      ########   odam.nl          #
+#    Updated: 2022/11/10 15:44:54 by shenders      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,25 +20,35 @@ SRC = ft_isalnum.c ft_isprint.c ft_isdigit.c ft_isalpha.c \
 	  ft_putstr_fd.c ft_strtrim.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 	  ft_strmapi.c ft_striteri.c ft_itoa.c ft_split.c
 
-
+SRCB = ft_lstnew_bonus.c ft_lstadd_front_bonus.c 
 
 OBJS = $(SRC:.c=.o)
 
-CC = gcc
+OBJB = $(SRCB:.c=.o)
+
+CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -I.
 
+ifdef W_BONUS
+	SRC += $(SRCB)
+endif
 
 all: files $(NAME)
 
+#bonus:	
+	#$(MAKE) W_BONUS=1
+bonus: $(OBJS) $(OBJB)
+	ar -rc $(NAME) $(OBJB)	
 files:
 	$(CC) $(CFLAGS) -c $(SRC)
 
+
 $(NAME): $(OBJS)
-	ar -rcs $(NAME) $(OBJS)
+	ar -rc $(NAME) $(OBJS)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(OBJB)
 
 
 fclean: clean
