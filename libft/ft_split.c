@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "libft.h"
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
@@ -14,7 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int word_count(const char *s, char c)
+#include <stdio.h>
+#include <stdlib.h>
+#include "libft.h"
+
+int	word_count(const char *s, char c)
 {
 	int	count;
 	int	i;
@@ -25,8 +25,9 @@ int word_count(const char *s, char c)
 	{
 		while (s[i] && s[i] == c)
 			i++;
-		while(s[i] && s[i] != c)
-		{	i++;
+		while (s[i] && s[i] != c)
+		{	
+			i++;
 			if (s[i] == c)
 			{	
 				count++;
@@ -43,7 +44,7 @@ size_t	word_len(const char *s, char c)
 {
 	int	count;
 
-	count = 0;	
+	count = 0;
 	while (*s && *s == c)
 		s++;
 	while (*s && *s != c)
@@ -60,14 +61,12 @@ void	free_m(char **strings)
 
 	i = 0;
 	while (*strings[i] != '\0')
-	{ 
+	{
 		free(strings[i]);
 		i++;
 	}
 	free(strings);
 }
-
-
 
 char	**ft_split(char const *s, char c)
 {
@@ -87,7 +86,7 @@ char	**ft_split(char const *s, char c)
 	{	
 		if (s[i] != c)
 		{	
-			temp[start] = ft_substr(s,  i, word_len(s + i, c));
+			temp[start] = ft_substr(s, i, word_len(s + i, c));
 			if (!temp[start])
 				free_m(temp);
 			start++;
