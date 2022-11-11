@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ft_lstsize_bonus.c                                 :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: shenders <marvin@codam.nl>                   +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/11/10 18:35:39 by shenders      #+#    #+#                 */
+/*   Updated: 2022/11/11 10:42:54 by shenders      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 int	ft_lstsize(t_list *lst)
@@ -5,8 +17,8 @@ int	ft_lstsize(t_list *lst)
 	int		count;
 	t_list	*tmp;
 
-	count = 0;
 	tmp = lst;
+	count = 0;
 	while (tmp != NULL)
 	{	
 		tmp = tmp->next;

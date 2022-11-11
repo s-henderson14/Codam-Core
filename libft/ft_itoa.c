@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/28 11:57:14 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/30 18:05:17 by shenders      ########   odam.nl         */
+/*   Created: 2022/11/07 13:33:43 by shenders      #+#    #+#                 */
+/*   Updated: 2022/11/07 14:22:14 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static	unsigned int	num_len(int p)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (p == 0)
@@ -35,7 +35,6 @@ static	unsigned int	num_len(int p)
 	return (count);
 }
 
-
 char	*ft_itoa(int n);
 
 char	*ft_itoa(int n)
@@ -46,18 +45,18 @@ char	*ft_itoa(int n)
 	len = num_len(n);
 	str = (char *) malloc(sizeof(char) * len + 1);
 	if (!str)
-		return(0);
+		return (0);
 	str[len] = '\0';
 	if (n == INT_MIN)
-		return(ft_memcpy(str, "-2147483648", 12)); 
+		return (ft_memcpy(str, "-2147483648", 12));
 	if (n < 0)
-        {
-                n = n * (-1);
-                str[0] = '-';
-        }
+	{
+				n = n * (-1);
+				str[0] = '-';
+	}
 	if (n == 0)
 		str[--len] = '0';
-	while (n != 0)	
+	while (n != 0)
 	{	
 		str[--len] = (n % 10) + '0';
 		n = n / 10;

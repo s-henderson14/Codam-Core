@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/07 12:29:44 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/19 15:05:10 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/07 14:56:45 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 
 	pdst = (char *)dst;
 	psrc = (char *)src;
-	if (!dst || !src)
+	if (!pdst && !psrc)
 		return (0);
 	if (pdst < psrc)
 		ft_memcpy(dst, src, len);

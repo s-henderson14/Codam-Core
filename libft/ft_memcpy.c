@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/06 09:28:32 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/19 11:09:07 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/07 14:57:00 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 
 	pdst = (char *) dst;
 	psrc = (char *) src;
-	if (psrc == NULL)
-		return (NULL);
+	if (!psrc && !dst)
+		return (0);
 	while (n != 0)
 	{	
 		*pdst = *psrc;

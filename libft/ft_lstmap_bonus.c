@@ -1,34 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_calloc.c                                        :+:    :+:            */
+/*   ft_lstmap_bonus.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/16 19:28:31 by shenders      #+#    #+#                 */
-/*   Updated: 2022/11/07 15:01:29 by shenders      ########   odam.nl         */
+/*   Created: 2022/11/11 18:08:20 by shenders      #+#    #+#                 */
+/*   Updated: 2022/11/11 18:13:03 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
-#include <string.h>
 
-void	*ft_calloc(size_t count, size_t size);
-
-void	*ft_calloc(size_t count, size_t size)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),void (*del)(void *))
 {
-	void	*mem;
-
-	mem = (void *) malloc (count * size);
-	if (!mem)
-		return (NULL);
-	ft_memset(mem, 0, count * size);
-	return (mem);
+		
 }
-
-/*int main(void)
-{
-    printf("%s\n", ft_calloc(5, 1));
-    printf("%s\n", calloc(5, 1));
-}*/
