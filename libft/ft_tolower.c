@@ -6,12 +6,12 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 12:12:45 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/24 09:57:13 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/13 17:18:06 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <ctype.h>
+/*#include <stdio.h>
+#include <ctype.h>*/
 
 int	ft_tolower(int c);
 

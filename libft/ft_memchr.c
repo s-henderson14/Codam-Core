@@ -6,12 +6,12 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 10:09:47 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/24 09:47:27 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/13 17:21:32 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-#include <stdio.h>
-#include <string.h>
+/*#include <stdio.h>*/
+#include <stdlib.h>
 
 void	*ft_memchr(const void *s, int c, size_t n);
 

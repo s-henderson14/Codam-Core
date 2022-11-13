@@ -6,13 +6,12 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/16 19:28:31 by shenders      #+#    #+#                 */
-/*   Updated: 2022/11/07 15:01:29 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/13 17:23:44 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
-#include <string.h>
 
 void	*ft_calloc(size_t count, size_t size);
 
@@ -27,8 +26,8 @@ void	*ft_calloc(size_t count, size_t size)
 	return (mem);
 }
 
-/*int main(void)
-{
-    printf("%s\n", ft_calloc(5, 1));
-    printf("%s\n", calloc(5, 1));
-}*/
+// int main(void)
+// {
+//     printf("%s\n", ft_calloc(5, 1));
+//     printf("%s\n", calloc(5, 1));
+// }

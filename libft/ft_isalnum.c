@@ -6,12 +6,12 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 17:04:14 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/18 18:12:00 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/13 17:06:30 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <ctype.h>
+/*#include <stdio.h>
+#include <ctype.h>*/
 
 int	ft_isalnum(int c);
 

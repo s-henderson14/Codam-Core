@@ -6,13 +6,13 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 17:19:52 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/18 20:51:28 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/13 17:06:57 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+/*#include "libft.h"
 #include <stdio.h>
-#include <ctype.h>
+#include <ctype.h>*/
 
 int	ft_isascii(int c);
 

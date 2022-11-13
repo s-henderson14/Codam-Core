@@ -6,12 +6,12 @@
 /*   By: shenders <shenders@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 14:17:37 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/14 13:15:58 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/13 17:03:27 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ctype.h>
-#include <stdio.h>
+//#include <ctype.h>
+//#include <stdio.h>
 
 int	ft_isalpha(int c);
 

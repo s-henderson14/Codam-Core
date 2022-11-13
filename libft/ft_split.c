@@ -6,39 +6,13 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/07 13:34:27 by shenders      #+#    #+#                 */
-/*   Updated: 2022/11/10 10:47:30 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/13 17:29:29 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "libft.h"
-
-/*int	word_count(const char *s, char c)
-{
-	int	count;
-	int	i;
-
-	i = 0;
-	count = 0;
-	while (s[i])
-	{
-		while (s[i] && s[i] == c)
-			i++;
-		while (s[i] && s[i] != c)
-		{	
-			i++;
-			if (s[i] == c)
-			{	
-				count++;
-				i++;
-			}
-			else if (s[i] == '\0')
-				count++;
-		}
-	}
-	return (count);
-}*/
 
 int	word_count(const char *s, char c)
 {
@@ -87,6 +61,7 @@ void	free_m(char **strings)
 		i++;
 	}
 	free(strings[i]);
+	free(strings);
 }
 
 char	**ft_split(char const *s, char c)
@@ -108,7 +83,7 @@ char	**ft_split(char const *s, char c)
 		{	
 			temp[start] = ft_substr(s, i, word_len(s + i, c));
 			if (!temp[start])
-				free_m(temp);
+				return (free_m(temp), NULL);
 			start++;
 			i = i + word_len(s + i, c);
 		}

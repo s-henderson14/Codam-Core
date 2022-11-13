@@ -6,12 +6,12 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 17:28:23 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/14 13:21:06 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/13 17:07:24 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <ctype.h>
+/*#include <stdio.h>
+#include <ctype.h>*/
 
 int	ft_isprint(int c);
 

@@ -6,14 +6,14 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/06 08:31:51 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/14 13:27:18 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/13 17:12:36 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <strings.h>
-//Test using Python Tutor or printf(ft_bzero(string, 3))
-//and change function declaration to pointer.
+#include <stdlib.h>
+/*Test using Python Tutor or printf(ft_bzero(string, 3))
+and change function declaration to pointer*/
+
 void	ft_bzero(void *s, size_t n);
 
 void	ft_bzero(void *s, size_t n)

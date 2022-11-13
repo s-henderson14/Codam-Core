@@ -6,13 +6,13 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 15:53:18 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/19 17:31:30 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/13 17:19:47 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include <string.h>
+/*#include <stdio.h>*/
+#include <stdlib.h>
 
 char	*ft_strrchr(const char *s, int c);
 

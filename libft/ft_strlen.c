@@ -6,18 +6,18 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 17:36:26 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/14 13:30:43 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/13 17:10:18 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+/*#include <stdio.h>*/
+#include <stdlib.h>
 
 size_t	ft_strlen(const char *s);
 
 size_t	ft_strlen(const char *s)
 {
-	unsigned long	i;
+	size_t	i;
 
 	i = 0;
 	while (s[i] != '\0')

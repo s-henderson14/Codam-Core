@@ -6,12 +6,12 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 11:01:00 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/14 13:24:39 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/13 17:22:01 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+/*#include <stdio.h>*/
+#include <stdlib.h>
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n);
 

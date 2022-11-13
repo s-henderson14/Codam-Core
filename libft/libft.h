@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/18 19:50:05 by shenders      #+#    #+#                 */
-/*   Updated: 2022/11/11 18:10:45 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/13 17:00:28 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,6 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),void (*del)(void *));
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 #endif

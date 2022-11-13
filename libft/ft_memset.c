@@ -6,12 +6,12 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 17:45:39 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/14 13:23:33 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/13 17:12:28 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+/*#include <stdio.h>*/
+#include <stdlib.h>
 
 void	*ft_memset(void *b, int c, size_t len);
 

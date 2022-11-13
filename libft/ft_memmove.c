@@ -6,13 +6,12 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/07 12:29:44 by shenders      #+#    #+#                 */
-/*   Updated: 2022/11/07 14:56:45 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/13 17:14:09 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include <string.h>
+/*#include <stdio.h>*/
 #include <stdlib.h>
 
 void	*ft_memmove(void *dst, const void *src, size_t len);

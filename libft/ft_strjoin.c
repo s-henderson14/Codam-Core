@@ -6,14 +6,13 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 19:07:35 by shenders      #+#    #+#                 */
-/*   Updated: 2022/10/24 11:59:53 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/13 17:26:49 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
+/*#include <stdio.h>*/
 #include <stdlib.h>
-#include <string.h>
 
 char	*ft_strjoin(char const *s1, char const *s2);
 
@@ -34,8 +33,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (0);
 	else
 	{	
-		memcpy(buff, s1, len1);
-		memcpy(buff + len1, s2, len2);
+		ft_memcpy(buff, s1, len1);
+		ft_memcpy(buff + len1, s2, len2);
 		buff[tot] = '\0';
 	}
 	return (concat);

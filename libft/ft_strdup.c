@@ -6,13 +6,13 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/16 17:58:06 by shenders      #+#    #+#                 */
-/*   Updated: 2022/11/07 14:49:47 by shenders      ########   odam.nl         */
+/*   Updated: 2022/11/13 17:27:30 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+/*#include <stdio.h>*/
 #include <stdlib.h>
+#include "libft.h"
 
 char	*ft_strdup(const char *s1);
 
@@ -29,7 +29,7 @@ char	*ft_strdup(const char *s1)
 		return (0);
 	else
 	{	
-		memcpy(buff, s1, len);
+		ft_memcpy(buff, s1, len);
 		buff[len] = '\0';
 		return (buff);
 	}		
