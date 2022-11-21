@@ -1,14 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_string.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/21 10:47:45 by shenders          #+#    #+#             */
+/*   Updated: 2022/11/21 11:38:04 by shenders         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
+#include <unistd.h>
 
-int print_string(char *s)
+int	print_string(char *s)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(s[i] != '\0')
-    {    
-        write(1, &s[i], 1);
-        i++;
-    }
-    return (i);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
+	return (i);
 }

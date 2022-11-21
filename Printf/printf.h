@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char.c                                       :+:      :+:    :+:   */
+/*   printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 10:33:05 by shenders          #+#    #+#             */
-/*   Updated: 2022/11/21 11:30:08 by shenders         ###   ########.fr       */
+/*   Created: 2022/11/18 14:14:28 by shenders          #+#    #+#             */
+/*   Updated: 2022/11/21 14:21:58 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#ifndef PRINTF_H
+# define PRINTF_H
 
-int	print_char(int c)
-{
-	write(1, &c, 1);
-	return (1);
-}
+# include <stdlib.h>
+
+int		print_char(int c);
+
+int		print_string(char *s);
+
+int		print_nbr(int n);
+
+int		print_hex(int);
+
+#endif
