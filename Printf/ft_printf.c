@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 18:46:39 by sean              #+#    #+#             */
-/*   Updated: 2022/11/21 18:01:42 by shenders         ###   ########.fr       */
+/*   Updated: 2022/11/21 18:38:26 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	printer(const char *fmt, va_list args)
 		print_nbr(va_arg(args, int));
 	else if (*fmt == 'p')
 	{
-		print_string("0x");
+		write(1, "0x", 3);
 		print_hex(va_arg(args, int));
 	}
 }	
@@ -53,13 +53,13 @@ int	ft_printf(const char *fmt, ...)
 
 int	main(void)
 {
-	void	*ptr;
-
+	void *ptr;
+	
 	ptr = NULL;
-	printf("%d\n", ft_printf("%d", 55));
 	ft_printf("Print the character %c.\n", 'H');
 	ft_printf("If you could do a %s, I'd be impressed.\n", "word");
 	ft_printf("But if you got me a number %d,\
 	 now that would be something!\n", 5);
-	ft_printf("So you really want to print a pointer? %p, woah you did!\n", ptr);
+	ft_printf("So you really want to print a pointer? %p, woah you did!\n", (void *)&ptr);
+	printf("So you really want to print a pointer? %p, woah you did!\n", (void *)&ptr);
 }

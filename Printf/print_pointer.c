@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_hex.c                                        :+:      :+:    :+:   */
+/*   print_pointer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 13:32:50 by shenders          #+#    #+#             */
-/*   Updated: 2022/11/21 18:54:25 by shenders         ###   ########.fr       */
+/*   Created: 2022/11/21 18:44:09 by shenders          #+#    #+#             */
+/*   Updated: 2022/11/21 18:50:54 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	num_len(int p)
 	return (count);
 }
 
-int	print_hex(int n)
+int	print_pointer(int n)
 {	
 	int		len;
 	int		i;
@@ -58,6 +58,6 @@ int	main(void)
 	void 	*ptr;
 
 	ptr = NULL;
-	printf("%p\n", &ptr);
-	print_hex(&ptr);
+	printf("%x\n", &ptr);
+	print_pointer(&ptr);
 }
