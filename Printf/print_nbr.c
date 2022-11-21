@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_nbr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/21 15:52:06 by shenders          #+#    #+#             */
+/*   Updated: 2022/11/21 18:04:47 by shenders         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include <stdio.h>
 #include "printf.h"
@@ -32,7 +44,7 @@ int	print_nbr(int n)
 	if (n == -2147483648)
 	{	
 		write(1, "-2147483648", 11);
-		return(11);
+		return (11);
 	}
 	if (n < 0)
 	{	
@@ -46,7 +58,7 @@ int	print_nbr(int n)
 	}
 	else if (n <= 9)
 		print_char('0' + n);
-	return (len);		
+	return (len);
 }
 
 /*int	main()

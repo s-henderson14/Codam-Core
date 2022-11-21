@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   printtest.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/18 14:14:28 by shenders          #+#    #+#             */
-/*   Updated: 2022/11/21 18:05:56 by shenders         ###   ########.fr       */
+/*   Created: 2022/11/21 15:52:34 by shenders          #+#    #+#             */
+/*   Updated: 2022/11/21 15:55:45 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+int	main(void)
+{
+	int	num;
 
-# include <stdlib.h>
-
-int		print_char(int c);
-
-int		print_string(char *s);
-
-int		print_nbr(int n);
-
-int		print_hex(int n);
-
-#endif
+	num = 3456;
+	printf("%x", num);
+	printf("%X", num);
+}
