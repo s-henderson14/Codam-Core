@@ -6,15 +6,17 @@
 #    By: sean <sean@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 09:55:33 by shenders          #+#    #+#              #
-#    Updated: 2022/11/20 19:00:46 by sean             ###   ########.fr        #
+#    Updated: 2022/11/24 15:11:50 by sean             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SOURCE =
+SOURCE = ft_printf.c print_char.c print_string.c print_nbr.c \
+print_pointer.c print_hex_lower.c print_hex_upper.c \
+print_unsigned_i.c
 
-OBJECTS = 
+OBJECTS = $(SOURCE:.c=.o)
 
 CC = cc
 

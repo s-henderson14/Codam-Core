@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char.c                                       :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sean <sean@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 10:33:05 by shenders          #+#    #+#             */
-/*   Updated: 2022/11/23 23:57:57 by sean             ###   ########.fr       */
+/*   Created: 2022/11/23 23:24:24 by sean              #+#    #+#             */
+/*   Updated: 2022/11/25 09:57:19 by sean             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "ft_printf.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	print_char(int c)
-{
-	write(1, &c, 1);
-	return (1);
-}
+# include <stdlib.h>
 
-/*int	main()
-{
-	print_char('1');
+int		ft_printf(const char *fmt, ...);
 
-}*/
+int		print_char(int c);
+
+int		print_string(char *s);
+
+int		print_nbr(int n);
+
+int		print_unsigned_i(unsigned int n);
+
+int	    print_hex_lower(unsigned long n);
+
+int		print_hex_upper(unsigned long n);
+
+int		print_pointer(void *n);
+
+#endif

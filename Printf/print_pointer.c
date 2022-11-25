@@ -3,61 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   print_pointer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sean <sean@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 18:44:09 by shenders          #+#    #+#             */
-/*   Updated: 2022/11/21 18:50:54 by shenders         ###   ########.fr       */
+/*   Updated: 2022/11/25 09:57:36 by sean             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "printf.h"
-#include <string.h>
 #include <stdio.h>
+#include <stdint.h>
+#include <unistd.h>
+#include "ft_printf.h"
+#include <string.h>
 
-static int	num_len(int p)
+static int    num_len(unsigned long p)
 {
-	int	count;
+    int    count;
 
-	count = 0;
-	while (p != 0)
-	{	
-		count++;
-		p /= 16;
-	}
-	return (count);
+    count = 0;
+    while (p != 0)
+    {    
+        count++;
+        p /= 16;
+    }
+    return (count);
 }
 
-int	print_pointer(int n)
-{	
-	int		len;
-	int		i;
-	char	*hex;
-	char	*str;
+int    print_pointer(void* n)
+{    
+    int        len;
+    char    *hex;
+    char    *str;
+	unsigned long	i;
 
-	len = num_len(n);
-	i = 0;
-	hex = "0123456789abcdef";
-	str = malloc(len * sizeof(char) + 1);
-	if (!str)
-		return (0);
-	str[len] = '\0';
-	if (n == 0)
-		str[--len] = hex[0];
-	while (n != 0)
-	{	
-		str[--len] = hex[n % 16];
-		n = n / 16;
-	}
-	print_string(str);
-	return ((int)strlen(str));
+	i = (unsigned long) &n;
+    len = num_len(i);
+    hex = "0123456789abcdef";
+    str = malloc(len * sizeof(char) + 1);
+    if (!str)
+        return (0);
+    str[len] = '\0';
+    while (i != 0)
+    {    
+        str[--len] = hex[i % 16];
+        i = i / 16;
+    }
+    write(1, "0x", 2);
+    print_string(str);
+    return ((int)strlen(str));
 }
 
-int	main(void)
-{	
-	void 	*ptr;
+/*int    main(void)
+{    
+    void     *ptr;
 
-	ptr = NULL;
-	printf("%x\n", &ptr);
-	print_pointer(&ptr);
-}
+    ptr = NULL;
+    printf("%p\n", &ptr);
+    print_pointer(&ptr);
+}*/
