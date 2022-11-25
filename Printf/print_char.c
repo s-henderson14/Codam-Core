@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sean <sean@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:33:05 by shenders          #+#    #+#             */
-/*   Updated: 2022/11/23 23:57:57 by sean             ###   ########.fr       */
+/*   Updated: 2022/11/25 15:18:32 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,7 @@
 #include "ft_printf.h"
 
 int	print_char(int c)
-{
+{	
 	write(1, &c, 1);
 	return (1);
 }
-
-/*int	main()
-{
-	print_char('1');
-
-}*/

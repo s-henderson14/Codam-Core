@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sean <sean@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/23 23:24:24 by sean              #+#    #+#             */
-/*   Updated: 2022/11/25 09:57:19 by sean             ###   ########.fr       */
+/*   Created: 2022/11/25 11:14:18 by shenders          #+#    #+#             */
+/*   Updated: 2022/11/25 12:57:59 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int		print_nbr(int n);
 
 int		print_unsigned_i(unsigned int n);
 
-int	    print_hex_lower(unsigned long n);
+int		print_hex_lower(unsigned int n);
 
-int		print_hex_upper(unsigned long n);
+int		print_hex_upper(unsigned int n);
 
-int		print_pointer(void *n);
+int		print_pointer(void *add);
 
 #endif

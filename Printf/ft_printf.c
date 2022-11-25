@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sean <sean@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 18:46:39 by sean              #+#    #+#             */
-/*   Updated: 2022/11/25 09:58:27 by sean             ###   ########.fr       */
+/*   Updated: 2022/11/25 15:25:46 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include "ft_printf.h"
+#include <ctype.h>
 
 static int	printer(const char fmt, va_list *args)
 {
@@ -34,9 +35,9 @@ static int	printer(const char fmt, va_list *args)
 		else if (fmt == 'u')
 			return (len += print_unsigned_i(va_arg(*args, unsigned int)));
 		else if (fmt == 'x')
-			return (len += print_hex_lower(va_arg(*args, unsigned long)));
+			return (len += print_hex_lower(va_arg(*args, unsigned int)));
 		else if (fmt == 'X')
-			return (len += print_hex_upper(va_arg(*args, unsigned long)));
+			return (len += print_hex_upper(va_arg(*args, unsigned int)));
 		else if (fmt == '%')
 			return (len += print_char('%'));
 	}
@@ -52,6 +53,8 @@ int	ft_printf(const char *fmt, ...)
 	count = 0;
 	pargs = &args;
 	va_start(args, fmt);
+	if (*fmt < 0)
+		return (-1);
 	while (*fmt)
 	{
 		if (*fmt != '%')
@@ -71,20 +74,19 @@ int	ft_printf(const char *fmt, ...)
 }
 
 /*int	main(void)
-{	
-	//printf(" NULL %s NULL ", NULL);
-	ft_printf(" NULL %s NULL ", NULL);
-	
-	void *ptr;
+{
+	int	*ptr;
 	
 	ptr = NULL;
-	ft_printf("Print the character %c.\n", 'H');
-	ft_printf("If you could do a %s, I'd be impressed.\n", "word");
-	ft_printf("But if you got me a number %d,\
-	 now that would be something!\n", 5);
-	ft_printf("So you really want to print a pointer? %p, woah you did!\n", (void *)&ptr);
-	printf("So you really want to print a pointer? %p, woah you did!\n", (void *)&ptr);
-	ft_printf("Hexa lower %x yuss!", 3317);
-	ft_printf("Hexa upper %X yuss!", 3317);
+	ft_printf(" %p ", ptr);
+	ft_printf(" %p ", 1);
+	ft_printf(" %p ", 15);
+	ft_printf(" %p ", 16);
+	ft_printf(" %p ", 17);
 
+	printf(" %p ", ptr);
+	printf(" %p ", 1);
+	printf(" %p ", 15);
+	printf(" %p ", 16);
+	printf(" %p ", 17);
 }*/

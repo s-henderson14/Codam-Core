@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_hex_lower.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sean <sean@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:32:50 by shenders          #+#    #+#             */
-/*   Updated: 2022/11/25 09:52:27 by sean             ###   ########.fr       */
+/*   Updated: 2022/11/25 14:57:57 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 #include <string.h>
 #include <stdio.h>
 
-static int	num_len(unsigned long p)
+static int	num_len(unsigned int p)
 {
 	int	count;
 
 	count = 0;
+	if (p == 0)
+		count++;
 	while (p != 0)
 	{	
 		p /= 16;
@@ -28,7 +30,7 @@ static int	num_len(unsigned long p)
 	return (count);
 }
 
-int	print_hex_lower(unsigned long n)
+int	print_hex_lower(unsigned int n)
 {	
 	int		len;
 	char	*hex;
@@ -40,20 +42,24 @@ int	print_hex_lower(unsigned long n)
 	if (!str)
 		return (0);
 	str[len] = '\0';
+	if (n == 0)
+		str[0] = hex[0];
 	while (n != 0)
 	{	
 		str[--len] = hex[n % 16];
 		n = n / 16;
 	}
 	print_string(str);
-	return ((int)strlen(str));
+	len = ((int) strlen(str));
+	free(str);
+	return (len);
 }
 
 /*int	main(void)
 {	
 	void 	*ptr;
-
 	ptr = NULL;
-	printf("%p\n", &ptr);
-	print_hex(&ptr);
+	
+	printf("%x\n", 3354556);
+	print_hex_lower(0);
 }*/

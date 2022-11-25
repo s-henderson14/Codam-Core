@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   print_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sean <sean@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:47:45 by shenders          #+#    #+#             */
-/*   Updated: 2022/11/24 16:06:17 by sean             ###   ########.fr       */
+/*   Updated: 2022/11/25 14:36:33 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include "ft_printf.h"
 
 int	print_string(char *s)
 {
@@ -21,9 +22,10 @@ int	print_string(char *s)
 	i = 0;
 	if (!s)
 		exit(1);
-	while (s[i])
+	while (*s)
 	{	
-		write(1, &s[i], 1);
+		print_char(*s);
+		s++;
 		i++;
 	}
 	return (i);
