@@ -6,12 +6,11 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:52:06 by shenders          #+#    #+#             */
-/*   Updated: 2022/11/25 11:17:40 by shenders         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:54:04 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
 #include "ft_printf.h"
 
 static int	num_len(int p)
@@ -46,7 +45,8 @@ int	print_nbr(int n)
 	}
 	if (n < 0)
 	{	
-		print_char('-');
+		if (print_char('-') == -1)
+			return (-1);
 		print_nbr(n * (-1));
 	}
 	else if (n > 9)
@@ -55,7 +55,8 @@ int	print_nbr(int n)
 		print_nbr(n % 10);
 	}
 	else if (n <= 9)
-		print_char('0' + n);
+		if (print_char('0' + n) == -1)
+			return (-1);
 	return (len);
 }
 

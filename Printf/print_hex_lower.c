@@ -6,14 +6,22 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:32:50 by shenders          #+#    #+#             */
-/*   Updated: 2022/11/25 14:57:57 by shenders         ###   ########.fr       */
+/*   Updated: 2022/12/05 13:39:20 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "ft_printf.h"
-#include <string.h>
-#include <stdio.h>
+#include <stdlib.h>
+
+static int	strl(char *s)
+{
+	int	count;
+
+	count = 0;
+	while (s[count] != '\0')
+		count++;
+	return (count);
+}
 
 static int	num_len(unsigned int p)
 {
@@ -40,7 +48,10 @@ int	print_hex_lower(unsigned int n)
 	hex = "0123456789abcdef";
 	str = malloc(len * sizeof(char) + 1);
 	if (!str)
-		return (0);
+	{	
+		free(str);
+		return (-1);
+	}
 	str[len] = '\0';
 	if (n == 0)
 		str[0] = hex[0];
@@ -49,8 +60,9 @@ int	print_hex_lower(unsigned int n)
 		str[--len] = hex[n % 16];
 		n = n / 16;
 	}
-	print_string(str);
-	len = ((int) strlen(str));
+	if (print_string(str) == -1)
+		return (-1);
+	len = (strl(str));
 	free(str);
 	return (len);
 }
@@ -60,6 +72,6 @@ int	print_hex_lower(unsigned int n)
 	void 	*ptr;
 	ptr = NULL;
 	
-	printf("%x\n", 3354556);
-	print_hex_lower(0);
+	printf("%x\n", -10);
+	print_hex_lower(-10);
 }*/

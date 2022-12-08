@@ -6,12 +6,10 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 14:56:51 by sean              #+#    #+#             */
-/*   Updated: 2022/11/25 11:19:16 by shenders         ###   ########.fr       */
+/*   Updated: 2022/12/01 15:32:37 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
 #include "ft_printf.h"
 
 static int	num_len(unsigned int p)
@@ -44,7 +42,8 @@ int	print_unsigned_i(unsigned int n)
 		print_unsigned_i(n % 10);
 	}
 	else if (n <= 9)
-		print_char('0' + n);
+		if (print_char('0' + n) == -1)
+			return (-1);
 	return (len);
 }
 

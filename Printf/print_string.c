@@ -6,13 +6,10 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:47:45 by shenders          #+#    #+#             */
-/*   Updated: 2022/11/25 14:36:33 by shenders         ###   ########.fr       */
+/*   Updated: 2022/12/05 13:41:13 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include "ft_printf.h"
 
 int	print_string(char *s)
@@ -21,17 +18,24 @@ int	print_string(char *s)
 
 	i = 0;
 	if (!s)
-		exit(1);
-	while (*s)
 	{	
-		print_char(*s);
-		s++;
+		if (print_string ("(null)") == -1)
+			return (-1);
+		return (6);
+	}
+	while (s[i])
+	{	
+		if (print_char(s[i]) == (-1))
+			return (-1);
 		i++;
 	}
 	return (i);
 }
 
 /*int	main()
-{
-	print_string("");
+{	
+	char	*x;
+
+	x = NULL;
+	print_string(x);
 }*/

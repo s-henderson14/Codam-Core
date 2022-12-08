@@ -6,15 +6,23 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 18:44:09 by shenders          #+#    #+#             */
-/*   Updated: 2022/11/25 14:26:13 by shenders         ###   ########.fr       */
+/*   Updated: 2022/12/05 13:41:38 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdint.h>
-#include <unistd.h>
+#include <stdlib.h>
 #include "ft_printf.h"
-#include <string.h>
+#include <unistd.h>
+
+static int	strl(char *s)
+{
+	int	count;
+
+	count = 0;
+	while (s[count] != '\0')
+		count++;
+	return (count);
+}
 
 static int	num_len(unsigned long p)
 {
@@ -43,9 +51,8 @@ int	print_pointer(void *add)
 	hex = "0123456789abcdef";
 	str = malloc(len * sizeof(char) + 1);
 	if (!str)
-		return (0);
+		return (free(str), -1);
 	str[len] = '\0';
-	print_string("0x");
 	if (i == 0)
 		str[--len] = hex[0];
 	while (i != 0)
@@ -53,17 +60,16 @@ int	print_pointer(void *add)
 		str[--len] = hex[i % 16];
 		i = i / 16;
 	}
-	print_string(str);
-	len = ((int)strlen(str) + 2);
+	len = strl(str);
+	write(1, "0x", 2);
+	if (print_string(str) == -1)
+		return (-1);
 	free(str);
-	return (len);
+	return (len + 2);
 }
 
 /*int    main(void)
-{    
-	int	*ptr;
-	
-	ptr = NULL;
-	ft_printf("%p\n", (void *)ptr);
+{   
+	ft_printf("%p", "");
 	printf("%p", (void *)ptr);
 }*/

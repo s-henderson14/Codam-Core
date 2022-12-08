@@ -6,87 +6,86 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 18:46:39 by sean              #+#    #+#             */
-/*   Updated: 2022/11/25 15:25:46 by shenders         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:37:34 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <stdarg.h>
-#include <unistd.h>
 #include "ft_printf.h"
-#include <ctype.h>
+#include <stdio.h>
 
 static int	printer(const char fmt, va_list *args)
 {
 	int	len;
 
 	len = 0;
-	while (fmt)
-	{
-		if (fmt == 'c')
-			return (len += print_char(va_arg(*args, int)));
-		else if (fmt == 's')
-			return (len += print_string(va_arg (*args, char *)));
-		else if (fmt == 'p')
-			return (len += print_pointer(va_arg(*args, void *)));
-		else if (fmt == 'd' || fmt == 'i')
-			return (len += print_nbr(va_arg(*args, int)));
-		else if (fmt == 'u')
-			return (len += print_unsigned_i(va_arg(*args, unsigned int)));
-		else if (fmt == 'x')
-			return (len += print_hex_lower(va_arg(*args, unsigned int)));
-		else if (fmt == 'X')
-			return (len += print_hex_upper(va_arg(*args, unsigned int)));
-		else if (fmt == '%')
-			return (len += print_char('%'));
-	}
-	return (0);
-}	
+	if (fmt == 'c')
+		return (print_char(va_arg(*args, int)));
+	else if (fmt == 's')
+		return (print_string(va_arg (*args, char *)));
+	else if (fmt == 'p')
+		return (print_pointer(va_arg(*args, void *)));
+	else if (fmt == 'd' || fmt == 'i')
+		return (print_nbr(va_arg(*args, int)));
+	else if (fmt == 'u')
+		return (print_unsigned_i(va_arg(*args, unsigned int)));
+	else if (fmt == 'x')
+		return (print_hex_lower(va_arg(*args, unsigned int)));
+	else if (fmt == 'X')
+		return (print_hex_upper(va_arg(*args, unsigned int)));
+	else if (fmt == '%')
+		return (print_char('%'));
+	return (len);
+}
 
-int	ft_printf(const char *fmt, ...)
-{	
-	int		count;
-	va_list	*pargs;
-	va_list	args;
+static int	fmt_index(const char *fmt, va_list *args)
+{
+	int	count;
+	int	temp;
 
+	temp = 0;
 	count = 0;
-	pargs = &args;
-	va_start(args, fmt);
-	if (*fmt < 0)
-		return (-1);
 	while (*fmt)
 	{
 		if (*fmt != '%')
-		{
-			print_char(*fmt);
+		{	
+			if (print_char(*fmt) == -1)
+				return (-1);
 			count++;
 		}
-		else if (*fmt == '%')
-		{
-			fmt++;
-			count += printer(*fmt, pargs);
+		else if (*fmt++ == '%')
+		{	
+			if (*fmt == '\0')
+				return (count);
+			temp = printer(*fmt, args);
+			count += temp;
 		}
 		fmt++;
-	}
-	va_end(args);
+	}	
 	return (count);
+}
+
+int	ft_printf(const char *fmt, ...)
+{	
+	int		len;
+	va_list	args;
+
+	va_start(args, fmt);
+	len = fmt_index(fmt, &args);
+	if (len == -1)
+		return (-1);
+	va_end(args);
+	return (len);
 }
 
 /*int	main(void)
 {
-	int	*ptr;
-	
-	ptr = NULL;
-	ft_printf(" %p ", ptr);
-	ft_printf(" %p ", 1);
-	ft_printf(" %p ", 15);
-	ft_printf(" %p ", 16);
-	ft_printf(" %p ", 17);
+	char	*string;
 
-	printf(" %p ", ptr);
-	printf(" %p ", 1);
-	printf(" %p ", 15);
-	printf(" %p ", 16);
-	printf(" %p ", 17);
+	
+	string = "hello % go";
+	printf("%s\n", string);
+	ft_printf("%s\n", string);
+	ft_printf("%%\n");
+	ft_printf("%%\n%") ;
 }*/
