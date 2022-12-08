@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:38:11 by shenders          #+#    #+#             */
-/*   Updated: 2022/12/08 16:26:12 by shenders         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:39:36 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 //#define BUFFER_SIZE 10
 
-char	find_new_line(char *text, int c)
+/*char	find_new_line(char *text, int c)
 {
 	int	i;
 
@@ -32,16 +32,17 @@ char	find_new_line(char *text, int c)
 	if (text[i] == '\0')
 		return (0);			
 				
-}
+}*/
 
 char	*readfile (int fd)
 {	
 	//static char buf[BUFFER_SIZE + 1]
 	static char	buf[212];
+	//static int	read_count;
 	
 	if (fd == -1)
 		return (NULL);
-	if (fd != EOF)	
+	if (fd != '\0')	
 	{	
 		read(fd, buf, 212);
 		buf[211] = '\0';
