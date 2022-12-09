@@ -6,11 +6,12 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 08:24:20 by shenders          #+#    #+#             */
-/*   Updated: 2022/12/08 13:30:36 by shenders         ###   ########.fr       */
+/*   Updated: 2022/12/09 18:29:30 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <string.h>
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -18,9 +19,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*buff;
 	size_t	s_len;
 
-	s_len = ft_strlen(s);
+	s_len = strlen(s);
 	if (*s == '\0' || start > s_len)
-		return (ft_strdup(""));
+		return (strdup(""));
 	if (start + len > s_len)
 		len = s_len - start;
 	buff = malloc(len * sizeof(char) + 1);
@@ -35,6 +36,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		len--;
 	}
 	*buff = '\0';
-	ft_memmove(substr, buff, len);
+	memmove(substr, buff, len);
 	return (substr);
 }

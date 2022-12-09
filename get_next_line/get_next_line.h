@@ -6,8 +6,12 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 08:24:16 by shenders          #+#    #+#             */
-/*   Updated: 2022/12/08 13:43:19 by shenders         ###   ########.fr       */
+/*   Updated: 2022/12/09 14:18:45 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif*/
 
 char	*get_next_line(int fd);
