@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 08:24:09 by shenders          #+#    #+#             */
-/*   Updated: 2022/12/10 12:53:27 by shenders         ###   ########.fr       */
+/*   Updated: 2022/12/10 13:01:15 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*get_next_line(int fd)
 		buf[BUFFER_SIZE] = '\0';
 		return(buf);
 	}
-	return (NULL);	// if read() failed || find_new_line failed 
+	return (NULL);	// if read() failed || find_new_line() failed 
 }
 
 int	main(void)
@@ -71,5 +71,8 @@ int	main(void)
 	fd = open("dhamma.txt", O_RDONLY);
 	if (fd == -1)
 		return (-1);
-	get_next_line(fd);	
+	if (get_next_line(fd) == NULL)
+		return(-1);
+	else 
+		return (0);		
 }
