@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:38:11 by shenders          #+#    #+#             */
-/*   Updated: 2022/12/09 14:35:48 by shenders         ###   ########.fr       */
+/*   Updated: 2022/12/10 10:02:29 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#ifndef BUFFER_SIZE 10
+#ifndef BUFFER_SIZE 
+#	define BUFFER_SIZE 10
+#endif
 
 char	*readfile (int fd)
 {	
