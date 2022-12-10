@@ -1,6 +1,18 @@
-#include <fcntl.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   find_newline.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/10 15:00:43 by shenders          #+#    #+#             */
+/*   Updated: 2022/12/10 15:01:04 by shenders         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <fcntl.h>
 #include <unistd.h>
 #include "get_next_line_utils.c"
 
@@ -49,7 +61,7 @@ char	*readfile (int fd)
 	return (NULL);	
 }
 
-int	main(void)
+/*int	main(void)
 {
 	int	fd;
 
@@ -58,4 +70,4 @@ int	main(void)
 		return (-1);
 	printf("%s", readfile(fd));
 	close(fd);
-}
+}*/

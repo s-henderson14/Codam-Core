@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:38:11 by shenders          #+#    #+#             */
-/*   Updated: 2022/12/10 10:02:29 by shenders         ###   ########.fr       */
+/*   Updated: 2022/12/10 14:57:37 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 char	*readfile (int fd)
 {	
 	//If no buffer size is defined with -D 
-	static char buf[BUFFER_SIZE + 1]
+	static char buf[BUFFER_SIZE + 1];
 	//static char	buf[250]; ///----------------------------buf is declared with space for 250 individual characters
 	//static int	read_count;
 	

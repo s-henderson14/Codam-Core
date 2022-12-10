@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 08:24:20 by shenders          #+#    #+#             */
-/*   Updated: 2022/12/10 11:24:25 by shenders         ###   ########.fr       */
+/*   Updated: 2022/12/10 17:07:53 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,29 @@ char    *ft_strjoin(char const *s1, char const *s2)
                 buff[tot] = '\0';
         }
         return (concat);
+}
+
+char	*linecut(char *line, int c)
+{
+	int		i;
+	int		j;
+	char	*line_end;
+
+	i = 0;
+	j = 0;
+	line_end = NULL;
+	while (line[i])
+	{
+		if (line[i] == c)
+		{	
+			i++;
+			if (line[i] == '\0') // if we find a null terminator directly after the '\n' then we haven't anything extra to cut from our line. 
+				return(0);
+			else
+				line_end = ft_substr(line, i, strlen(line) - i);	
+			return (line_end);
+		}
+		i++;
+	}		
+	return (0);
 }
