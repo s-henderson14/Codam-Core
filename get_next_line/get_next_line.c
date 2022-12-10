@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 08:24:09 by shenders          #+#    #+#             */
-/*   Updated: 2022/12/10 12:12:04 by shenders         ###   ########.fr       */
+/*   Updated: 2022/12/10 12:53:27 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 //Dhamma.txt is 212 bytes
 #ifndef BUFFER_SIZE 
-#	define BUFFER_SIZE 10
+#	define BUFFER_SIZE 40
 #endif
 
 char	*find_new_line(char *txt, int c)
@@ -33,9 +33,8 @@ char	*find_new_line(char *txt, int c)
 		if (txt[i] == (char)c)
 			return (ft_substr(txt, 0, i));
 		i++;
-	}
-	if (txt[i] == '\0')		
-		return (0);			
+	}	
+	return (0);			
 }
 
 char	*get_next_line(int fd)
@@ -43,29 +42,26 @@ char	*get_next_line(int fd)
 	static char buf[BUFFER_SIZE + 1];
 	char	*line;
 
-	line = NULL;
 	if (fd < 1)
 		return(NULL);
-	while (read(fd, buf, BUFFER_SIZE) > 0) // While read is successful
+	while (read(fd, buf, BUFFER_SIZE) > 0) // While there is something to read and read is successful'
 	{	
-		if (find_new_line(buf, '\n') == (NULL)) // if error occurs when searching for '\n'. Free buffer and return error value.
-		{	
-			free(buf); // free the allcoated buffer
+		line = NULL;
+		if ((find_new_line(buf, '\n') == (NULL) || 0)) // if error occurs when searching for '\n'. Free buffer and return error value.
 			break;
-		}
-		else if (find_new_line(buf, '\n') == 0) // if no occurences of a newline character are found return the contents which were read into the buffer. 
-		{	
-			buf[BUFFER_SIZE] = '\0';	
-			return (buf);
-		}
 		else
 		{	
 			line = find_new_line(buf, '\n'); //on success, find_new_line () will return a string from the buffer. This string is everything read before the newline character.
-			line = ft_strjoin(line, '\n'); // adds newline character to the end of the 'line', the string returned from find_new_line()
+			line = ft_strjoin(line, "\n"); // adds newline character to the end of the 'line', the string returned from find_new_line()
 			return(line);
 		}
 	}
-	return (NULL);	// if read() failed || or read () had nothing to read || or find_new_line failed 
+	if (read(fd,buf, BUFFER_SIZE) == 0)
+	{	
+		buf[BUFFER_SIZE] = '\0';
+		return(buf);
+	}
+	return (NULL);	// if read() failed || find_new_line failed 
 }
 
 int	main(void)
