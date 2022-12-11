@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 08:24:09 by shenders          #+#    #+#             */
-/*   Updated: 2022/12/10 17:17:41 by shenders         ###   ########.fr       */
+/*   Updated: 2022/12/11 13:10:47 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 //Dhamma.txt is 212 bytes
 #ifndef BUFFER_SIZE 
-#	define BUFFER_SIZE 38
+#	define BUFFER_SIZE 40
 #endif
 
 char	*find_new_line(char *txt, int c)
@@ -31,7 +31,7 @@ char	*find_new_line(char *txt, int c)
 	while (txt[i])
 	{	
 		if (txt[i] == (char)c)
-			return (ft_substr(txt, 0, i));
+			return (ft_substr(txt, 0, i + 1));
 		i++;
 	}	
 	return (0);			
@@ -39,34 +39,25 @@ char	*find_new_line(char *txt, int c)
 
 char	*get_next_line(int fd)
 {	
-	static char buf[BUFFER_SIZE + 1];
-	char	*line;
-	char	*nextline;
+	char 		buf[BUFFER_SIZE + 1];
+ 	static char	*line;
+	char		*nextline;
 
+	line = strdup("");
 	if (fd < 1)
-		return(NULL);
+		return(NULL); //Understand whether this check is necessary or not.
 	while (read(fd, buf, BUFFER_SIZE) > 0) // While there is something to read and read is successful'
 	{	
-		line = NULL;
-		if (find_new_line(buf, '\n') == (NULL)) // if error occurs when searching for '\n'. Free buffer and return error value.
-			return (NULL);
-		else if (find_new_line(buf, '\n') == 0)
-			line = buf;
-		/*{	
-			buf[BUFFER_SIZE] = '\0';
-			return (buf);
-		}*/	
+		//if (find_new_line(buf, '\n') == (NULL)) // if error occurs when searching for '\n'. Free buffer and return error value.
+		//	return (NULL);
+		if (find_new_line(buf, '\n') == NULL)
+			ft_strjoin(line, buf);
 		else
 		{	
-			line = find_new_line(buf, '\n'); //on success, find_new_line () will return a string from the buffer. This string is everything read before the newline character.
-			nextline = //line = ft_strjoin(line, "\n"); // adds newline character to the end of the 'line', the string returned from find_new_line()
-			return(line);
+			line = ft_strjoin(line, find_new_line(buf, '\n')); //on success, find_new_line () will return a string from the buffer. This string is everything read before the newline character and the newline character.
+			nextline = linecut(buf, '\n');//line = ft_strjoin(line, "\n"); // adds newline character to the end of the 'line', the string returned from find_new_line()
+			return (nextline);
 		}
-	}
-	if (read(fd,buf, BUFFER_SIZE) == 0)
-	{	
-		buf[BUFFER_SIZE] = '\0';
-		return(buf);
 	}
 	return (NULL);	// if read() failed || find_new_line() failed 
 }
@@ -78,6 +69,7 @@ int	main(void)
 	fd = open("dhamma.txt", O_RDONLY);
 	if (fd == -1)
 		return (-1);
+	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	//if (get_next_line(fd) == NULL)
 	//	return(-1);

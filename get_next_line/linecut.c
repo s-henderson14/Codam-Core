@@ -18,7 +18,7 @@ char	*linecut(char *line, int c)
 			i++;
 			if (line[i] == '\0') // if we find a null terminator directly after the '\n' then we haven't anything extra to cut from our line. 
 				return(0);
-			else
+			else if (line[i] != '\0')
 				line_end = ft_substr(line, i, strlen(line) - i);	
 			return (line_end);
 		}
@@ -31,6 +31,6 @@ int	main()
 {
 	char	*string;
 
-	string = "Wagwan padawan dont gimme that newline \n and nothing thereafter";
+	string = "Wagwan padawan dont gimme that newline\n and nothing thereafter";
 	printf("%s", linecut(string, '\n'));
 }
