@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 08:24:09 by shenders          #+#    #+#             */
-/*   Updated: 2022/12/11 13:10:47 by shenders         ###   ########.fr       */
+/*   Updated: 2022/12/11 19:19:37 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 //Dhamma.txt is 212 bytes
 #ifndef BUFFER_SIZE 
-#	define BUFFER_SIZE 40
+#	define BUFFER_SIZE 1
 #endif
 
 char	*find_new_line(char *txt, int c)
@@ -39,7 +39,7 @@ char	*find_new_line(char *txt, int c)
 
 char	*get_next_line(int fd)
 {	
-	char 		buf[BUFFER_SIZE + 1];
+	static char	buf[BUFFER_SIZE + 1];
  	static char	*line;
 	char		*nextline;
 
@@ -51,13 +51,13 @@ char	*get_next_line(int fd)
 		//if (find_new_line(buf, '\n') == (NULL)) // if error occurs when searching for '\n'. Free buffer and return error value.
 		//	return (NULL);
 		if (find_new_line(buf, '\n') == NULL)
-			ft_strjoin(line, buf);
+			line = ft_strjoin(line, buf);
 		else
 		{	
 			line = ft_strjoin(line, find_new_line(buf, '\n')); //on success, find_new_line () will return a string from the buffer. This string is everything read before the newline character and the newline character.
-			nextline = linecut(buf, '\n');//line = ft_strjoin(line, "\n"); // adds newline character to the end of the 'line', the string returned from find_new_line()
-			return (nextline);
+			return (line);
 		}
+		nextline = linecut(buf, '\n');//line = ft_strjoin(line, "\n"); // adds newline character to the end of the 'line', the string returned from find_new_line()
 	}
 	return (NULL);	// if read() failed || find_new_line() failed 
 }

@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 08:24:20 by shenders          #+#    #+#             */
-/*   Updated: 2022/12/10 17:07:53 by shenders         ###   ########.fr       */
+/*   Updated: 2022/12/11 18:37:21 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,9 @@ char    *ft_strjoin(char const *s1, char const *s2)
         tot = len1 + len2;
         if (!buff)
                 return (0);
-        else
-        {
-                memmove(buff, s1, len1);
-                memmove(buff + len1, s2, len2);
-                buff[tot] = '\0';
-        }
+        memmove(buff, s1, len1);
+        memmove(buff + len1, s2, len2);
+        buff[tot] = '\0';
         return (concat);
 }
 
