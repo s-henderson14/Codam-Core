@@ -23,7 +23,9 @@ char	*linecut(char *line, int c)
 			return (line_end);
 		}
 		i++;
-	}		
+	}
+	if (line[i] == '\0' && c =='\0')
+		return (ft_substr(line, 0, strlen(line)));		
 	return (strdup(""));
 }
 
