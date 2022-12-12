@@ -22,9 +22,9 @@ int	main()
 	char	*string;
 	char	*nonstring;
 
-	string = "I was walking by the side of the road looking for a backslash n, they look sort of like this.\n An then just like magic I saw one.";
+	string = "o\n";
 	nonstring = "";
-	printf("%d\n", printf("%s\n", find_new_line(string, 'l')));
+	printf("%d\n", printf("%s\n", find_new_line(string, '\n')));
 	//printf("%s", find_new_line(string,'z'));
 	//printf("%s", find_new_line(nonstring, 'p'));
 }

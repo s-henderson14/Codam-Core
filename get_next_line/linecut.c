@@ -24,7 +24,7 @@ char	*linecut(char *line, int c)
 		}
 		i++;
 	}		
-	return (0);
+	return (strdup(""));
 }
 
 int	main()
