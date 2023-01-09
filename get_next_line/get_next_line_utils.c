@@ -5,11 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 08:24:20 by shenders          #+#    #+#             */
-/*   Updated: 2023/01/09 14:27:00 by shenders         ###   ########.fr       */
+/*   Created: 2023/01/09 15:27:39 by shenders          #+#    #+#             */
+/*   Updated: 2023/01/09 15:28:21 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -23,31 +24,29 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*concat;
 	char	*buff;
 	size_t	len1;
 	size_t	len2;
-	int		tot;
 
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
 	buff = malloc((len1 + len2) * sizeof(char) + 1);
-	concat = buff;
-	tot = len1 + len2;
 	if (!buff)
-		return (free(concat), free(buff), NULL);
+		return (free(buff), NULL);
 	memmove(buff, s1, len1);
 	memmove(buff + len1, s2, len2);
-	buff[tot] = '\0';
-	return (concat);
+	buff[len1 + len2] = '\0';
+	return (buff);
 }
 
 char	*join_and_free(char *line, char *buf)
 {
 	char	*tmp;
-
+	
+	if(!line || !buf)
+		return (NULL);
 	tmp = ft_strjoin(line, buf);
 	if (!tmp)
 		return (free(tmp), NULL);
