@@ -5,65 +5,98 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 08:24:09 by shenders          #+#    #+#             */
-/*   Updated: 2023/01/03 17:16:58 by shenders         ###   ########.fr       */
+/*   Created: 2023/01/09 14:02:59 by shenders          #+#    #+#             */
+/*   Updated: 2023/01/09 14:26:26 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-//#include "get_next_line_utils.c"
 #include <stdio.h>
 #include <stdlib.h>
+//#include "get_next_line_utils.c"
 #include <fcntl.h>
 #include <unistd.h>
-#include <string.h>
+#include "get_next_line.h"
 
 #ifndef BUFFER_SIZE 
-# define BUFFER_SIZE 39
+# define BUFFER_SIZE 10
 #endif
 
-char	*get_next_line(int fd)
-{	
-	char		buf[BUFFER_SIZE + 1];
-	char		*line;
-	static char	*nextline;
-	int			bytes_read;
+char	*readfile(int fd, char *line)
+{
+	char	*buffer;
+	int		bytes_read;
 
-	if (fd < 0 || BUFFER_SIZE < 0)
-		return (NULL);
-	if (nextline != 0)
-		line = nextline;
-	else if (nextline == 0)
-		line = strdup("");
-	while ((bytes_read = read(fd, buf, BUFFER_SIZE)) > 0)
-	{	
-		buf[bytes_read] = '\0';
-		if (bytes_read < BUFFER_SIZE)
-			return (ft_strjoin(line, find_char(buf, '\0')));
-		else if (find_char(buf, '\n') == NULL)
-			line = ft_strjoin(line, buf);
-		else
-		{	
-			line = ft_strjoin(line, find_char(buf, '\n'));
-			nextline = linecut(buf, '\n');
-			return (line);
-		}
+	if (!line)
+		line = malloc(sizeof(char) * 1);
+	if (!line)
+		return (free(line), NULL);
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	bytes_read = 1;
+	while (bytes_read > 0)
+	{
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read == -1)
+			return (free(buffer), NULL);
+		buffer[bytes_read] = '\0';
+		line = join_and_free(line, buffer);
+		if (!line)
+			return (free(line), NULL);
+		if (ft_strchr(buffer, '\n'))
+			break ;
 	}
-	return (NULL);
+	free(buffer);
+	return (line);
 }
 
-/*int	main(void)
+char	*getline_(char *txt)
 {
-	int	fd;
-	
-	fd = open("dhumma.txt", O_RDONLY);
-	if (fd == -1)
-		return (-1);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	if (get_next_line(fd) == NULL)
-		return(-1);
-	return (0);		
+	int		i;
+	char	*line;
+
+	i = 0;
+	if (!txt[i])
+		return (NULL);
+	while (txt[i] && txt[i] != '\n')
+		i++;
+	line = malloc(sizeof(char) * (i + 2));
+	i = 0;
+	while (txt[i] && txt[i] != '\n')
+	{	
+		line[i] = txt[i];
+		i++;
+	}
+	if (txt[i] && txt[i] == '\n')
+		line[i++] = '\n';
+	return (line);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	*buf;
+	char		*line;
+
+	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0 < 0))
+		return (NULL);
+	buf = readfile(fd, buf);
+	if (!buf)
+		return (free(buf), NULL);
+	line = getline_(buf);
+	if (!line)
+		return (free(line), NULL);
+	buf = over_read(buf);
+	return (line);
+}
+
+/*int main(void)
+{   
+    int fd;
+
+    fd = open("dhamma.txt", O_RDONLY);
+    if (fd == (-1))
+        return (-1);
+    printf("%s", get_next_line(fd)); 
+    //printf("%s", get_next_line(fd));
+    //printf("%s", get_next_line(fd));
+    //printf("%s", get_next_line(fd)); 
+    return (0);
 }*/

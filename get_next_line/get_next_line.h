@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 08:24:16 by shenders          #+#    #+#             */
-/*   Updated: 2023/01/03 16:27:28 by shenders         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:15:24 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,18 @@
 
 char	*get_next_line(int fd);
 
+char	*readfile(int fd, char *line);
+
+char	*getline_(char *txt);
+
+char	*over_read(char *txt);
+
 char	*ft_strjoin(char const *s1, char const *s2);
 
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*join_and_free(char *line, char *buf);
 
-char	*find_char(char *txt, int c);
+char	*ft_strchr(const char *s, int c);
 
-char	*linecut(char *line, int c);
+size_t	ft_strlen(const char *s);
 
 #endif
