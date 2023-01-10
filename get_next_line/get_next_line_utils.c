@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Sean <Sean@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:27:39 by shenders          #+#    #+#             */
-/*   Updated: 2023/01/09 15:28:21 by shenders         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:50:14 by Sean             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ char	*ft_strjoin(char *s1, char *s2)
 char	*join_and_free(char *line, char *buf)
 {
 	char	*tmp;
-	
-	if(!line || !buf)
+
+	if (!line || !buf)
 		return (NULL);
 	tmp = ft_strjoin(line, buf);
 	if (!tmp)
@@ -86,10 +86,9 @@ char	*over_read(char *txt)
 	j = 0;
 	while (txt[i])
 	{	
-		line[j] = txt[i];
-		i++;
-		j++;
+		line[j++] = txt[i++];
 	}
+	line[j++] = '\0';
 	free(txt);
 	return (line);
 }
