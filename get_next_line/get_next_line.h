@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Sean <Sean@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 08:24:16 by shenders          #+#    #+#             */
-/*   Updated: 2023/01/09 18:31:40 by Sean             ###   ########.fr       */
+/*   Updated: 2023/01/17 17:01:14 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,13 @@
 
 char	*get_next_line(int fd);
 
-char	*readfile(int fd, char *line);
-
-char	*getline_(char *txt);
-
-char	*over_read(char *txt);
-
 char	*ft_strjoin(char *s1, char *s2);
 
-char	*join_and_free(char *line, char *buf);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+
+char	*newline_present(char *txt);
+
+char	*bytes_after_newline(char *txt);
 
 char	*ft_strchr(const char *s, int c);
 

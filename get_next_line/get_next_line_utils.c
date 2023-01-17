@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Sean <Sean@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/09 15:27:39 by shenders          #+#    #+#             */
-/*   Updated: 2023/01/10 18:50:14 by Sean             ###   ########.fr       */
+/*   Created: 2022/12/08 08:24:20 by shenders          #+#    #+#             */
+/*   Updated: 2023/01/17 17:51:16 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,71 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	char	*pdst;
+	char	*psrc;
+
+	pdst = (char *) dst;
+	psrc = (char *) src;
+	if (!psrc && !dst)
+		return (0);
+	while (n != 0)
+	{
+		*pdst = *psrc;
+		pdst++;
+		psrc++;
+		n--;
+	}
+	return (dst);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	char	*buff;
+	int		len;
+
+	len = 0;
+	while (s1[len] != '\0')
+		len++;
+	buff = (char *) malloc (len * sizeof(char) + 1);
+	if (!buff)
+		return (0);
+	else
+	{
+		ft_memcpy(buff, s1, len);
+		buff[len] = '\0';
+		return (buff);
+	}
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*substr;
+	char	*buff;
+	size_t	s_len;
+
+	s_len = ft_strlen(s);
+	if (*s == '\0' || start > s_len)
+		return (ft_strdup(""));
+	if (start + len > s_len)
+		len = s_len - start;
+	buff = malloc(len * sizeof(char) + 1);
+	if (!buff)
+		return (NULL);
+	substr = buff;
+	while (s[start] && len > 0)
+	{
+		*buff = s[start];
+		buff++;
+		start++;
+		len--;
+	}
+	*buff = '\0';
+	ft_memcpy(substr, buff, len);
+	return (substr);
+}
+
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*buff;
@@ -32,63 +97,12 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
-	buff = malloc((len1 + len2) * sizeof(char) + 1);
+	buff = malloc(len1 + len2 + 1);
 	if (!buff)
-		return (free(buff), NULL);
-	memmove(buff, s1, len1);
-	memmove(buff + len1, s2, len2);
+		return (free(s1), NULL);
+	ft_memcpy(buff, s1, len1);
+	ft_memcpy(buff + len1, s2, len2);
 	buff[len1 + len2] = '\0';
+	free(s1);
 	return (buff);
-}
-
-char	*join_and_free(char *line, char *buf)
-{
-	char	*tmp;
-
-	if (!line || !buf)
-		return (NULL);
-	tmp = ft_strjoin(line, buf);
-	if (!tmp)
-		return (free(tmp), NULL);
-	free(line);
-	return (tmp);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s != '\0')
-	{
-		if (*s == (char) c)
-			return ((char *)s);
-		s++;
-	}
-	if (*s == '\0' && (char) c == '\0')
-		return ((char *) s);
-	else
-		return (0);
-}
-
-char	*over_read(char *txt)
-{
-	int		i;
-	int		j;
-	char	*line;
-
-	i = 0;
-	while (txt[i] && txt[i] != '\n')
-		i++;
-	if (!txt[i])
-		return (free(txt), NULL);
-	line = malloc((ft_strlen(txt) - i + 1) * sizeof(char));
-	if (!line)
-		return (free(line), NULL);
-	i++;
-	j = 0;
-	while (txt[i])
-	{	
-		line[j++] = txt[i++];
-	}
-	line[j++] = '\0';
-	free(txt);
-	return (line);
 }
