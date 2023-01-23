@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 08:24:20 by shenders          #+#    #+#             */
-/*   Updated: 2023/01/23 12:38:13 by shenders         ###   ########.fr       */
+/*   Updated: 2023/01/23 15:21:41 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*ft_strdup(const char *s1)
 		len++;
 	buff = (char *) malloc (len * sizeof(char) + 1);
 	if (!buff)
-		return (0);
+		return (NULL);
 	else
 	{
 		ft_memcpy(buff, s1, len);
@@ -79,7 +79,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 		len = s_len - start;
 	buff = malloc(len * (sizeof(char) + 1));
 	if (!buff)
-		return (NULL);
+		return (free(s), NULL);
 	while (s[start] && i < len)
 		buff[i++] = s[start++];
 	buff[i] = '\0';
@@ -96,7 +96,7 @@ char	*ft_strjoin(char *s1, char *s2, bool free_s1)
 	len2 = ft_strlen(s2);
 	buff = malloc(len1 + len2 + 1);
 	if (!buff)
-		return (NULL);
+		return (free(s1), NULL);
 	ft_memcpy(buff, s1, len1);
 	ft_memcpy(buff + len1, s2, len2);
 	if (free_s1)

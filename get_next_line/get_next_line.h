@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 08:24:16 by shenders          #+#    #+#             */
-/*   Updated: 2023/01/23 12:25:14 by shenders         ###   ########.fr       */
+/*   Updated: 2023/01/23 15:42:44 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 
 # include <stdlib.h>
 # include <stdbool.h>
+# include <limits.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10000000
+# endif
+
+# if BUFFER_SIZE >= INT_MAX
+#  undef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
 char	*get_next_line(int fd);
 
@@ -29,8 +39,6 @@ char	*ft_strjoin(char *s1, char *s2, bool free_s1);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 
 char	*ft_strchr(const char *s, int c);
-
-void	*ft_memmove(void *dst, const void *src, size_t len);
 
 size_t	ft_strlen(const char *s);
 

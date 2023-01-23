@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 01:02:38 by Sean              #+#    #+#             */
-/*   Updated: 2023/01/23 15:14:04 by shenders         ###   ########.fr       */
+/*   Updated: 2023/01/23 15:43:02 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,6 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdbool.h>
-
-#ifndef BUFFER_SIZE 
-# define BUFFER_SIZE 10
-#endif
 
 char	*newline_present(char *txt)
 {
@@ -82,23 +78,24 @@ char	*ft_strchr(const char *s, int c)
 
 char	*readfile(int fd, char *txt_cont)
 {
-	char	buffer[BUFFER_SIZE + 1];
+	char	*buffer;
 	int		bytes_read;
 
 	bytes_read = BUFFER_SIZE;
+	buffer = malloc(BUFFER_SIZE + 1);
 	while (bytes_read == BUFFER_SIZE)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
-			return (NULL);
+			return (free(buffer), NULL);
 		buffer[bytes_read] = '\0';
 		txt_cont = ft_strjoin(txt_cont, buffer, true);
 		if (ft_strchr(txt_cont, '\n'))
 			break ;
 	}
 	if (txt_cont[0] == '\0' || !txt_cont)
-		return (free(txt_cont), NULL);
-	return (txt_cont);
+		return (free(buffer), free(txt_cont), NULL);	
+	return (free(buffer), txt_cont);
 }
 
 char	*get_next_line(int fd)
@@ -135,7 +132,7 @@ char	*get_next_line(int fd)
 
 // int	main(void)
 // {	
-// 	atexit(l);
+// 	//atexit(l);
 // 	int		fd;
 
 // 	fd = open("test.txt", O_RDONLY);
