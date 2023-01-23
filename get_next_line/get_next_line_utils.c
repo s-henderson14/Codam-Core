@@ -6,19 +6,20 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 08:24:20 by shenders          #+#    #+#             */
-/*   Updated: 2023/01/17 17:51:16 by shenders         ###   ########.fr       */
+/*   Updated: 2023/01/23 12:38:13 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdlib.h>
-#include <string.h>
 
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
 	i = 0;
+	if (s[i] == '\0')
+		return (0);
 	while (s[i] != '\0')
 		i++;
 	return (i);
@@ -28,12 +29,14 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	char	*pdst;
 	char	*psrc;
+	size_t	i;
 
+	i = 0;
 	pdst = (char *) dst;
 	psrc = (char *) src;
 	if (!psrc && !dst)
 		return (0);
-	while (n != 0)
+	while (i != n)
 	{
 		*pdst = *psrc;
 		pdst++;
@@ -62,34 +65,28 @@ char	*ft_strdup(const char *s1)
 	}
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
-	char	*substr;
-	char	*buff;
+	size_t	i;
 	size_t	s_len;
+	char	*buff;
 
+	i = 0;
 	s_len = ft_strlen(s);
-	if (*s == '\0' || start > s_len)
+	if (s[i] == '\0' || start > s_len)
 		return (ft_strdup(""));
 	if (start + len > s_len)
 		len = s_len - start;
-	buff = malloc(len * sizeof(char) + 1);
+	buff = malloc(len * (sizeof(char) + 1));
 	if (!buff)
 		return (NULL);
-	substr = buff;
-	while (s[start] && len > 0)
-	{
-		*buff = s[start];
-		buff++;
-		start++;
-		len--;
-	}
-	*buff = '\0';
-	ft_memcpy(substr, buff, len);
-	return (substr);
+	while (s[start] && i < len)
+		buff[i++] = s[start++];
+	buff[i] = '\0';
+	return (buff);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2, bool free_s1)
 {
 	char	*buff;
 	size_t	len1;
@@ -99,10 +96,11 @@ char	*ft_strjoin(char *s1, char *s2)
 	len2 = ft_strlen(s2);
 	buff = malloc(len1 + len2 + 1);
 	if (!buff)
-		return (free(s1), NULL);
+		return (NULL);
 	ft_memcpy(buff, s1, len1);
 	ft_memcpy(buff + len1, s2, len2);
+	if (free_s1)
+		free(s1);
 	buff[len1 + len2] = '\0';
-	free(s1);
 	return (buff);
 }
