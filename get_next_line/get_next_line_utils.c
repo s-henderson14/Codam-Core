@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 08:24:20 by shenders          #+#    #+#             */
-/*   Updated: 2023/01/23 15:21:41 by shenders         ###   ########.fr       */
+/*   Updated: 2023/01/24 16:27:03 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,25 +68,21 @@ char	*ft_strdup(const char *s1)
 char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	size_t	i;
-	size_t	s_len;
 	char	*buff;
 
 	i = 0;
-	s_len = ft_strlen(s);
-	if (s[i] == '\0' || start > s_len)
-		return (ft_strdup(""));
-	if (start + len > s_len)
-		len = s_len - start;
-	buff = malloc(len * (sizeof(char) + 1));
+	if (!s)
+		return (NULL);
+	buff = malloc(len * (sizeof(char)) + 1);
 	if (!buff)
-		return (free(s), NULL);
+		return (NULL);
 	while (s[start] && i < len)
 		buff[i++] = s[start++];
 	buff[i] = '\0';
 	return (buff);
 }
 
-char	*ft_strjoin(char *s1, char *s2, bool free_s1)
+char	*ft_strjoin(char *s1, char *s2, int free_s1)
 {
 	char	*buff;
 	size_t	len1;

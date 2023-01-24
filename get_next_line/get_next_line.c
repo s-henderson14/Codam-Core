@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 01:02:38 by Sean              #+#    #+#             */
-/*   Updated: 2023/01/23 15:43:02 by shenders         ###   ########.fr       */
+/*   Updated: 2023/01/24 16:56:52 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*newline_present(char *txt)
 
 	i = 0;
 	line = NULL;
+	if (!txt)
+		return (free(txt), NULL);
 	while (txt[i])
 	{	
 		if (txt[i] == '\n')
@@ -35,8 +37,7 @@ char	*newline_present(char *txt)
 		}
 		i++;
 	}
-	line = ft_substr(txt, 0, ft_strlen(txt));
-	return (free(txt), line);
+	return (txt);
 }
 
 char	*bytes_after_newline(char *txt)
@@ -81,20 +82,26 @@ char	*readfile(int fd, char *txt_cont)
 	char	*buffer;
 	int		bytes_read;
 
+	if (txt_cont == NULL)
+		return (free(txt_cont), NULL);
 	bytes_read = BUFFER_SIZE;
 	buffer = malloc(BUFFER_SIZE + 1);
+	if (!buffer)
+		return (free(txt_cont), NULL);
 	while (bytes_read == BUFFER_SIZE)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
 			return (free(buffer), NULL);
 		buffer[bytes_read] = '\0';
-		txt_cont = ft_strjoin(txt_cont, buffer, true);
+		txt_cont = ft_strjoin(txt_cont, buffer, 1);
+		if (!txt_cont || txt_cont[0] == '\0')
+			return (free(buffer), free(txt_cont), NULL);
 		if (ft_strchr(txt_cont, '\n'))
 			break ;
 	}
 	if (txt_cont[0] == '\0' || !txt_cont)
-		return (free(buffer), free(txt_cont), NULL);	
+		return (free(buffer), free(txt_cont), NULL);
 	return (free(buffer), txt_cont);
 }
 
@@ -104,7 +111,7 @@ char	*get_next_line(int fd)
 	static char	*excess;
 
 	if (BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
-	{
+	{	
 		free(excess);
 		excess = NULL;
 		return (NULL);
@@ -114,7 +121,7 @@ char	*get_next_line(int fd)
 		return (free(excess), NULL);
 	txt_container[0] = '\0';
 	if (excess)
-		txt_container = ft_strjoin(txt_container, excess, true);
+		txt_container = ft_strjoin(txt_container, excess, 1);
 	txt_container = readfile(fd, txt_container);
 	if (!txt_container || !txt_container[0])
 		return (free(excess), free(txt_container), NULL);
@@ -122,6 +129,8 @@ char	*get_next_line(int fd)
 		free(excess);
 	excess = bytes_after_newline(txt_container);
 	txt_container = newline_present(txt_container);
+	if (!txt_container)
+		return (NULL);
 	return (txt_container);
 }
 
@@ -133,21 +142,19 @@ char	*get_next_line(int fd)
 // int	main(void)
 // {	
 // 	//atexit(l);
-// 	int		fd;
+// 	int fd = open("test.txt", O_RDONLY);
 
 // 	fd = open("test.txt", O_RDONLY);
 // 	printf("%s", get_next_line(fd));
 // 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	//printf("%s", get_next_line(fd));
-// 	//printf("%s", get_next_line(fd));
+// 	// printf("%s", get_next_line(fd));
+// 	// printf("%s", get_next_line(fd));
+// 	// printf("%s", get_next_line(fd));
+// 	// printf("%s", get_next_line(fd));
+// 	// printf("%s", get_next_line(fd));
+// 	// printf("%s", get_next_line(fd));
+// 	// printf("%s", get_next_line(fd));
+// 	// printf("%s", get_next_line(fd));
+// 	// printf("%s", get_next_line(fd));
 // 	return (0);
 // }
