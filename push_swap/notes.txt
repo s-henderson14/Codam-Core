@@ -1,0 +1,12 @@
+
+	+ Because the list size we work with will change depending on the input from the user, we must dynamically allocate memory for a list size accordingly.
+		
+		- Declare a struct for our list.
+
+		- Declare a node as our list item.
+
+		- Determine the size of the list input by the user.
+
+		- Use malloc to allocate a space for input (list_size * sizeof(node-created)
+
+		 
