@@ -1,37 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   stack_init.c                                       :+:    :+:            */
+/*   push_swap_utils.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/02/22 13:56:52 by shenders      #+#    #+#                 */
-/*   Updated: 2023/02/22 14:05:32 by shenders      ########   odam.nl         */
+/*   Created: 2023/02/22 14:16:32 by shenders      #+#    #+#                 */
+/*   Updated: 2023/02/22 16:37:45 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
-
-struct s_node
-{
-	int				value;
-	struct s_node	*next;
-};
-typedef struct node	t_node;
-
-void	print_node(t_node *head)
-{	
-	t_node	*tmp;
-
-	tmp = head;
-	while (tmp != NULL)
-	{	
-		printf("%d", tmp->value);
-		tmp = tmp->next;
-	}
-}
+#include "pushswap.h"
 
 void	add_front(t_node **list, t_node *new)
 {
@@ -77,21 +56,29 @@ int	ft_atoi(const char *str)
 	return (number * minus);
 }
 
-int	main(int argc, char **argv)
-{	
-	int		i;
-	t_node	*head;
-	t_node	*node;
+void	print_node(t_node *head)
+{
+	t_node	*tmp;
 
-	i = 1;
-	if (argc <= 2)
-		return (0);
-	while (i < argc)
-	{	
-		node = node_init(atoi(argv[i]));
-		add_front(&head, node);
-		i++;
+	tmp = head;
+	while (tmp != NULL)
+	{
+		printf("%d", tmp->value);
+		tmp = tmp->next;
 	}
-	print_node(head);
-	return (0);
+}
+
+int	stack_size(t_node **head)
+{
+	int		count;
+	t_node	*tmp;
+
+	count = 0;
+	tmp = *head;
+	while (tmp != NULL)
+	{
+		tmp = tmp->next;
+		count++;
+	}
+	return (count);
 }
