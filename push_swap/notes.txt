@@ -1,12 +1,59 @@
+push_swap
 
-	+ Because the list size we work with will change depending on the input from the user, we must dynamically allocate memory for a list size accordingly.
-		
-		- Declare a struct for our list.
+	- This project will make you sort data on a stack with a limited set of instructions.
+        - The aim is to do so with the lowest number of actions possible.
+        - You will have to manipulate various types of algorithms.
+        - And you will have to choose the most appropriate solution to optimise the data sorting.
 
-		- Declare a node as our list item.
+	Program_name : push_swap
+	Turn-in files : Makefile, *.h, *.c
+	Makefile : NAME, all, clean, fclean, re
+	Arguments : stack 'a' : Formatted as a list of integers.
+	External Functions : read, write, malloc, free, ft_printf, any equivalent YOU coded.
+	Libft : Allowed
 
-		- Determine the size of the list input by the user.
+Learning Objectives
+	- Rigor
+	- Use of C
+	- Use of basic algorithms
+Rules 
+	- You have 2 stacks named 'a' and 'b'.
+	- At the beginning:
+		- Stack 'a' contains a random amount of negative and/or positive numbers which cannot be duplicated.
+		- Stack 'b' is empty.
+	- The goal is to sort in ascending order numbers into stack 'a'
+	- You have the following operations at your disposal:
 
-		- Use malloc to allocate a space for input (list_size * sizeof(node-created)
+		SWAP TOP 2 ELEMENTS OF A OR B OR BOTH                                                                       [a]    [a] 
+		sa - Swap the first 2 elements at the top of stack 'a'. (Do nothing if there is only 1 or 0 elements).      [2]    [1]
+		sb - Swap the first 2 elements at the top of stack 'b'. (Do nothing if there is only 1 or 0 elements).      [1] sa [2] 
+		ss - sa and sb at the same time.                                                                            [3]    [3] 
 
-		 
+		PUSH TOP ELEMENT FROM ONE STACK TO THE TOP OF THE OTHER                                                 [a] [b]    [a] [b]
+		pa - Take the 1st element at the top of 'b' and put it at the top of 'a'. (Do nothing if 'b' is empty). [1] [-]    [-] [3]
+		pb - Take the 1st element at the top of 'a' and put it at the top of 'b'. (Do nothing if 'a' is empty). [2] [-] pb [-] [2]		                                                                                                        [3] [-]    [-] [1]
+		                                                                                                        [3] [-]    [-] [1] 
+		SHIFT ALL ELEMENTS OF STACK UPWARDS                                                                         
+		ra - Shift all elements of stack 'a' upwards by 1. (The 1st element becomes the last).                  [a] [b]    [a] [b]
+		rb - Shift all elements of stack 'b' upwards by 1. (The 1st element becomes the last)                   [2] [6]    [1] [8]
+		rr - ra and rb at the same time.                                                                        [1] [8] rr [4] [0]
+                                                                                                                        [4] [0]    [2] [6]
+		SHIFT ALL ELEMENTS OF STACK DOWNWARDS
+		rra - Shift all elements of stack 'a' downwards by 1. (The last element becomes the 1st).                   [a]     [a] 
+		rrb - Shift all elements of stack 'b' downwards by 1. (The last element becomes the 1st).                   [5]     [2]    
+		rrr - rra and rrb at the same time.                                                                         [7] rra [5]     
+                                                                                                                            [2]     [7]        
+		NOTE: 
+		- The argument will be a formatted list of integers.
+		- The first argument should be at the top of the stack.
+		- The program must display the smallest number of instructions required to sort stack 'a'. The smallest number at the top.
+		- Instructions must be separated by a '\n' and nothing else.
+		- If no parameters are provided the program must not display anything and give the prompt back.
+		- In case of error, it must display "Error" followed by a '\n' on the standard error.
+		- Errors include:
+			- any of the arguments are not integers.
+			- some arguments are greater than an integer.
+			- there are dupplicates in the list.
+Revise
+	- Linked Lists
+	- Structs
