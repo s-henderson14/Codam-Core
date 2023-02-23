@@ -1,62 +1,71 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   swap.c                                             :+:    :+:            */
+/*   rotate.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/02/22 12:54:00 by shenders      #+#    #+#                 */
-/*   Updated: 2023/02/23 11:56:18 by shenders      ########   odam.nl         */
+/*   Created: 2023/02/23 12:01:33 by shenders      #+#    #+#                 */
+/*   Updated: 2023/02/23 13:23:41 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 #include "push_swap_utils.c"
 
-void	swap_a(t_node **head)
+void rotate_a(t_node **head)	
 {	
-	int		count;
 	t_node	*tmp1;
 	t_node	*tmp2;
+	t_node	*last;
 
-	count = 0;
 	tmp1 = *head;
-	while (tmp1 != NULL)
-	{	
+	while (tmp1->next != NULL)
 		tmp1 = tmp1->next;
-		count++;
-	}
-	if (count < 2)
-		exit(0);
+	last = tmp1;
 	tmp1 = *head;
 	tmp2 = (*head)->next;
-	(*head)->next = tmp2->next;
-	tmp2->next = tmp1;
+	(*head)->next = NULL;
+	last->next = *head;
 	*head = tmp2;
 }
 
-void	swap_b(t_node **head)
+void rotate_b(t_node **head)
 {
-	int	count;
 	t_node	*tmp1;
-	t_node 	*tmp2;
+	t_node	*tmp2;
+	t_node	*last;
 
-	count = 0;
 	tmp1 = *head;
-	while (tmp1 != NULL)
-	{	
+	while (tmp1->next != NULL)
 		tmp1 = tmp1->next;
-		count++;
-	}
-	if (count < 2)
-		exit(0);
+	last = tmp1;
 	tmp1 = *head;
 	tmp2 = (*head)->next;
-	(*head)->next = tmp2->next;
+	(*head)->next = NULL;
+	last->next = *head;
 	*head = tmp2;
-	(*head)->next = tmp1;
-	
-}								
+}
+
+void	reverse_rotate_a(t_node **head)
+{
+	t_node	*tmp1;
+	t_node	*tmp2;
+	t_node	*last;
+
+	tmp1 = *head;
+	while (tmp1->next != NULL)
+		tmp1 = tmp1->next;
+	last = tmp1;
+
+	tmp1 = *head;
+	tmp2 = last->prev;
+	*head = last;
+	(*head)->next = tmp1->next;
+	tmp2->next = NULL;
+}
+
+
 int	main(void)
 {
 	t_node	n1;
@@ -73,7 +82,7 @@ int	main(void)
 	n3.next = NULL;
 	print_node(head);
 	printf("\n");
-	swap_b(&head);
+	reverse_rotate_a(&head);
 	print_node(head);
 	return (0);
 }

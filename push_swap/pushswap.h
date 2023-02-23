@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/22 13:47:09 by shenders      #+#    #+#                 */
-/*   Updated: 2023/02/22 13:47:13 by shenders      ########   odam.nl         */
+/*   Updated: 2023/02/23 12:05:00 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct node
 {
 	int			value;
 	struct node	*next;
+	struct node	*prev;
 }t_node;
 
 void	print_node(t_node *head);
