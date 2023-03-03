@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   push_swap.c                                       :+:    :+:            */
+/*   largest_number.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/03/03 10:15:58 by shenders      #+#    #+#                 */
-/*   Updated: 2023/03/03 15:32:22 by shenders      ########   odam.nl         */
+/*   Created: 2023/03/02 16:31:45 by shenders      #+#    #+#                 */
+/*   Updated: 2023/03/02 17:40:23 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+int	largest_number(t_node **head)
 {
-	int		i;
-	t_node	*head_a;
-	t_node	*node_a;
-	t_node	*head_b;
-	
-	i = 1;
-	if (argc <= 2)
-		exit(0);
-	while (i < argc)
-	{
-		node_a = node_init(atoi(argv[i]));
-		add_back(&head_a, node_a);
-		i++;
+	t_node	*tmp;
+	int		largest_num;
+
+	tmp = *head;
+	largest_num = tmp->value;
+	while (tmp-> next != NULL)
+	{	
+		if ((tmp->next)->value > largest_num)
+			largest_num = (tmp->next)->value;
+		tmp = tmp->next;
 	}
-	head_b = NULL;
-	sorter(&head_a, &head_b);
-	return (0);
+	return (largest_num);
 }

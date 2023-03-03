@@ -1,31 +1,33 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: shenders <marvin@codam.nl>                   +#+                      #
-#                                                    +#+                       #
-#    Created: 2023/02/24 10:55:55 by shenders      #+#    #+#                  #
-#    Updated: 2023/02/24 14:57:55 by shenders      ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: shenders <shenders@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/02/24 10:55:55 by shenders          #+#    #+#              #
+#    Updated: 2023/03/03 14:54:07 by shenders         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRC = push_a.c push_b.c swap_a.c swap_b.c rotate_a.c rotate_b.c \
-	  reverse_rotate_a.c reverse_rotate_b.c stack_init.c ft_atoi.c \
-      ft_printf.c print_node.c stack_init.c stack_size.c
+SRC = add_back.c add_front.c ft_atoi.c is_sorted.c largest_number.c last_node.c \
+	  list_size.c node_init.c print_node.c push_a.c push_b.c push_swap.c \
+	  reverse_rotate_a.c reverse_rotate_b.c rotate_a.c rotate_b.c \
+	  sorter.c swap_a.c swap_b.c
+
 
 OBJECTS = $(SRC:.c=.o)
 
-CC = c
+CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	ar -rc $(NAME) $?
+	cc -o $(NAME) $(OBJECTS)
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $?

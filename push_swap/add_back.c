@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   push_swap.c                                       :+:    :+:            */
+/*   add_back.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/03/03 10:15:58 by shenders      #+#    #+#                 */
-/*   Updated: 2023/03/03 15:32:22 by shenders      ########   odam.nl         */
+/*   Created: 2023/03/03 09:37:40 by shenders      #+#    #+#                 */
+/*   Updated: 2023/03/03 09:54:56 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	add_back(t_node **list, t_node *new)
 {
-	int		i;
-	t_node	*head_a;
-	t_node	*node_a;
-	t_node	*head_b;
+	t_node	*tmp;
 	
-	i = 1;
-	if (argc <= 2)
-		exit(0);
-	while (i < argc)
-	{
-		node_a = node_init(atoi(argv[i]));
-		add_back(&head_a, node_a);
-		i++;
+	tmp = *list;
+	if (tmp == NULL)
+	{	
+		add_front(list, new);
+		return ;
 	}
-	head_b = NULL;
-	sorter(&head_a, &head_b);
-	return (0);
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = new;
+	new = NULL;
 }

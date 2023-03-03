@@ -6,9 +6,11 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/24 14:48:46 by shenders      #+#    #+#                 */
-/*   Updated: 2023/02/24 14:48:49 by shenders      ########   odam.nl         */
+/*   Updated: 2023/03/03 10:27:10 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 int	ft_atoi(const char *str)
 {
