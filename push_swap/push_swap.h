@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/02 11:33:25 by shenders      #+#    #+#                 */
-/*   Updated: 2023/03/03 10:35:14 by shenders      ########   odam.nl         */
+/*   Updated: 2023/03/17 14:50:43 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,13 @@ typedef struct node
 	
 }t_node;
 
-void	sorter(t_node **head_a, t_node **head_b);
+void 	giga_sort(t_node **head_a, t_node **head_b);
+
+void	sorter_v1(t_node **head_a, t_node **head_b);
+
+void	sort_three(t_node **head);
+
+void short_sort(t_node **head_a, t_node **head_b);
 
 void	swap_a(t_node **head);
 
@@ -49,15 +55,25 @@ void	add_front(t_node **list, t_node *new);
 
 void	add_back(t_node **list, t_node *new);
 
+void	merge(t_node **head_a, t_node **head_b);
+
 t_node	*node_init(int value);
+
+t_node	*pivot_finder(t_node **head);
 
 int		ft_atoi(const char *str);
 
 int		list_size(t_node **head);
 
-int		is_sorted(t_node **head_a);
+int		valid_integer(int c);
 
-int	largest_number(t_node **head);
+int		is_a_sorted(t_node **head_a);
+
+int		is_b_sorted(t_node **head_b);
+
+int		is_duplicate(t_node **head, int value);
+
+int		largest_number(t_node **head);
 
 t_node	*last_node(t_node *head);
 

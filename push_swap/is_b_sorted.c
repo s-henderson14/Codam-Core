@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_atoi.c                                          :+:    :+:            */
+/*   is_b_sorted.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/02/24 14:48:46 by shenders      #+#    #+#                 */
-/*   Updated: 2023/03/06 13:33:36 by shenders      ########   odam.nl         */
+/*   Created: 2023/03/08 14:24:28 by shenders      #+#    #+#                 */
+/*   Updated: 2023/03/08 14:37:01 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_atoi(const char *str)
+int	is_b_sorted(t_node **head_a)
 {
-	int	index;
-	int	number;
-	int	minus;
+	t_node	*tmp;
+	int		sorted;
 
-	index = 0;
-	number = 0;
-	minus = 1;
-	while (str[index] != '\0')
-	{	
-		if (!valid_integer(str[index]))
-				return (0);
-		index++;
+	sorted = 0;
+	tmp = *head_a;
+	while (tmp->next != NULL)
+	{
+		if (tmp->value > (tmp->next)->value)
+			sorted = 1;
+		else
+		{
+			sorted = 0;
+			break;
+		}
+		tmp = tmp->next;
 	}
-	index = 0;
-	if (str[index] == 45)
-	{	
-		minus = minus * (-1);
-		index++;
-	}
-	while (str[index] >= 48 && str[index] <= 57)
-		number = (number * 10) + (str[index++] - '0');
-	return (number * minus);
+	return (sorted);
 }
-

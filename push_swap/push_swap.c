@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 10:15:58 by shenders      #+#    #+#                 */
-/*   Updated: 2023/03/03 15:32:22 by shenders      ########   odam.nl         */
+/*   Updated: 2023/03/17 17:36:31 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,22 @@ int	main(int argc, char **argv)
 	if (argc <= 2)
 		exit(0);
 	while (i < argc)
-	{
+	{		
 		node_a = node_init(atoi(argv[i]));
+		if ((is_duplicate(&head_a, node_a->value)) || node_a->value == 0) 
+		{	
+			write(2, "Error\n", 6);
+			exit (0);
+		}	
 		add_back(&head_a, node_a);
 		i++;
 	}
 	head_b = NULL;
-	sorter(&head_a, &head_b);
+	if (argc < 7)
+	{	
+		short_sort(&head_a, &head_a);
+		return (0);
+	}
+	giga_sort(&head_a, &head_b);
 	return (0);
 }
