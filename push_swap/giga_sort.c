@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/16 18:03:36 by shenders      #+#    #+#                 */
-/*   Updated: 2023/03/17 17:50:00 by shenders      ########   odam.nl         */
+/*   Updated: 2023/03/22 20:08:08 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	giga_sort(t_node **head_a, t_node **head_b)
 	while (!is_a_sorted(head_a))
 	{	
 		pivot = pivot_finder(head_a);
+		printf ("I am the pivot and I am %d!", pivot->value);
 		while (*head_a != pivot)
 		{	
 			if ((*head_a)->value < pivot->value)

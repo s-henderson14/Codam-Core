@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/16 10:41:53 by shenders      #+#    #+#                 */
-/*   Updated: 2023/03/17 17:40:59 by shenders      ########   odam.nl         */
+/*   Updated: 2023/03/22 20:15:23 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void short_sort(t_node **head_a, t_node **head_b)
 {
 	int	size;	
 	
+	if (is_a_sorted(head_a))
+		exit(0);	
 	size = list_size(head_a);
 	if (list_size(head_a) == 5)
 	{	
@@ -38,7 +40,7 @@ void short_sort(t_node **head_a, t_node **head_b)
 
 /*int	main()
 {	
-	t_node	n1, n2, n3, n4;
+	t_node	n1, n2, n3, n4, n5;
 	t_node	*head_a;
 	t_node	*head_b;
 
@@ -47,12 +49,12 @@ void short_sort(t_node **head_a, t_node **head_b)
 	n2.value = 2;
 	n3.value = 3;
 	n4.value = 4;
-	//n5.value = 5;
+	n5.value = 5;
 	head_a = &n3;
 	n3.next = &n1;
 	n1.next = &n2;
-	n2.next = &n4;
-	//n5.next = &n4;
+	n2.next = &n5;
+	n5.next = &n4;
 	n4.next = NULL;
 	print_node(head_a);
 	short_sort(&head_a, &head_b);

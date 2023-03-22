@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/16 09:40:28 by shenders      #+#    #+#                 */
-/*   Updated: 2023/03/16 13:59:36 by shenders      ########   odam.nl         */
+/*   Updated: 2023/03/22 21:17:06 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,38 @@ void	sort_three(t_node **head)
 
 	mid = (*head)->next;
 	last = last_node(*head);
-	if ((*head)->value > mid->value && mid->value > last->value) 
+	if ((*head)->value == largest_number(head) && mid->value > last->value) 
 	{	
 		swap_a(head);
 		reverse_rotate_a(head);
 	}
-	else if ((*head)->value > mid->value && mid->value < last->value)
+	else if ((*head)->value == largest_number(head) && mid->value < last->value)
 		rotate_a(head);
-	else if ((*head)->value < mid->value && mid->value > last->value)
-	{	
+	else if (mid->value == largest_number(head) && (*head)->value > last->value)
+		reverse_rotate_a(head);
+	else if (mid->value == largest_number(head) && (*head)->value < last->value)
+	{  
 		swap_a(head);
 		rotate_a(head);
 	}
-	else if ((*head)->value < mid->value && mid->value > last->value)
-	   reverse_rotate_a(head);
-	else if ((*head)->value > mid->value && (*head)->value < last->value)
+	else if (last->value == largest_number(head) && (*head)->value > mid->value)
 		swap_a(head);
-}	
+}
+
+/*int	main()
+{
+	t_node	n1, n2, n3;
+	t_node	*head;
+
+	n1.value = 2;
+	n2.value = 4;
+	n3.value = 3;
+	head = &n1;
+	n1.next = &n2;
+	n2.next = &n3;
+	n3.next = NULL;
+	print_node(head);
+	sort_three(&head);
+	print_node(head);
+	return (0);
+}*/
