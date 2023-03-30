@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   quick_sort_b.c                                     :+:    :+:            */
+/*   compare_pivot_a.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/03/24 13:13:26 by shenders      #+#    #+#                 */
-/*   Updated: 2023/03/30 09:18:24 by shenders      ########   odam.nl         */
+/*   Created: 2023/03/30 07:29:05 by shenders      #+#    #+#                 */
+/*   Updated: 2023/03/30 10:36:49 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	quick_sort_b(t_node	**head_a, t_node **head_b, int elements)
+int	compare_pivot_a(t_node **head_a, t_node **head_b, int elements)
 {
 	int	pivot;
 	int	pushes;
@@ -20,21 +20,24 @@ void	quick_sort_b(t_node	**head_a, t_node **head_b, int elements)
 
 	pushes = 0;
 	actions = 0;
-	if (is_b_sorted(head_b))
-	{	
-		while (list_size(head_b) != 0)
-			push_a(head_a, head_b);
-	}
-	while (!is_b_sorted(head_b))
-	{	
-		pivot = pivot_finder(head_b);
+	while (!is_a_sorted(head_a))
+	{
+		pivot = pivot_finder(head_a)->value;
 		while (actions < elements)
-		{	
-			if ((*head_b)->value > pivot)
+		{
+			if ((*head_a)->value < pivot)
 			{	
-				push_a(head_a, head_b);
+				push_b(head_a,head_b);
 				pushes++;
 			}
-			else 
-				rotate_b(head_b);
+			else
+				rotate_a(head_a);
 			actions++;
+		}
+		if (list_size(head_a) <= 5)
+			short_sort(head_a,head_b);
+		break ;
+	}
+	return (pushes);
+}
+

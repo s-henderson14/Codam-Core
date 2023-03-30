@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/02 11:33:25 by shenders      #+#    #+#                 */
-/*   Updated: 2023/03/17 14:50:43 by shenders      ########   odam.nl         */
+/*   Updated: 2023/03/30 09:53:30 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct node
 	
 }t_node;
 
-void 	giga_sort(t_node **head_a, t_node **head_b);
+void 	giga_sort(t_node **head_a, t_node **head_b, int elements);
 
 void	sorter_v1(t_node **head_a, t_node **head_b);
 
@@ -74,6 +74,10 @@ int		is_b_sorted(t_node **head_b);
 int		is_duplicate(t_node **head, int value);
 
 int		largest_number(t_node **head);
+
+int		compare_pivot_a(t_node **head_a, t_node **head_b, int elements);
+
+int		compare_pivot_b(t_node **head_a, t_node **head_b, int elements);
 
 t_node	*last_node(t_node *head);
 
