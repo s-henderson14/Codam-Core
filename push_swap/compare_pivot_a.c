@@ -41,3 +41,4 @@ int	compare_pivot_a(t_node **head_a, t_node **head_b, int elements)
 	return (pushes);
 }
 
+

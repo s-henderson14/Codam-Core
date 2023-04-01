@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   quick_sorter.c                                     :+:    :+:            */
+/*   quick_sort_a.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -28,8 +28,19 @@ void quick_sort_a(t_node **head_a, t_node **head_b, int elements)
 	}
 	pushes = 0;
 	while (!is_b_sorted(head_b))	
-		pushes += compare_pivot_b(head_a,head_b, list_size(head_b));	
-}	
+	{	
+		if (pushes == 0)
+			pushes += compare_pivot_b(head_a,head_b, list_size(head_b));
+		else 
+			pushes += compare_pivot_b(head_a,head_b, pushes);
+	}
+	if (is_a_sorted(head_a))
+		while (list_size(head_b) != 0)
+			push_a(head_a,head_b);
+	else 
+		quick_sort_a(head_a, head_b, pushes);
+		
+}
 
 int	main()
 {
@@ -73,3 +84,4 @@ int	main()
 	print_node(head_b);
 	return (0);
 }
+

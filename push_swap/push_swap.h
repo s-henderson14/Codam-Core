@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/02 11:33:25 by shenders      #+#    #+#                 */
-/*   Updated: 2023/03/30 09:53:30 by shenders      ########   odam.nl         */
+/*   Updated: 2023/03/17 14:50:43 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,17 @@ typedef struct node
 	
 }t_node;
 
-void 	giga_sort(t_node **head_a, t_node **head_b, int elements);
+void 	giga_sort(t_node **head_a, t_node **head_b);
 
 void	sorter_v1(t_node **head_a, t_node **head_b);
 
 void	sort_three(t_node **head);
 
-void short_sort(t_node **head_a, t_node **head_b);
+void	sort_three_b(t_node **head);
+
+void	short_sort(t_node **head_a, t_node **head_b);
+
+void	short_sort_b(t_node **head_a, t_node **head_b);
 
 void	swap_a(t_node **head);
 
@@ -57,6 +61,8 @@ void	add_back(t_node **list, t_node *new);
 
 void	merge(t_node **head_a, t_node **head_b);
 
+void	merge_b(t_node **head_a, t_node **head_b);
+
 t_node	*node_init(int value);
 
 t_node	*pivot_finder(t_node **head);
@@ -75,9 +81,15 @@ int		is_duplicate(t_node **head, int value);
 
 int		largest_number(t_node **head);
 
-int		compare_pivot_a(t_node **head_a, t_node **head_b, int elements);
+int	compare_pivot_a(t_node **head_a, t_node **head_b, int elements);
 
-int		compare_pivot_b(t_node **head_a, t_node **head_b, int elements);
+int	compare_pivot_b(t_node **head_a, t_node **head_b, int elements);
+
+void quick_sort_a(t_node **head_a, t_node **head_b, int elements);
+
+void quick_sort_b(t_node **head_a, t_node **head_b, int elements);
+
+
 
 t_node	*last_node(t_node *head);
 

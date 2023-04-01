@@ -27,7 +27,7 @@ void	quick_sort_b(t_node	**head_a, t_node **head_b, int elements)
 	}
 	while (!is_b_sorted(head_b))
 	{	
-		pivot = pivot_finder(head_b);
+		pivot = pivot_finder(head_b)->value;
 		while (actions < elements)
 		{	
 			if ((*head_b)->value > pivot)
@@ -38,3 +38,7 @@ void	quick_sort_b(t_node	**head_a, t_node **head_b, int elements)
 			else 
 				rotate_b(head_b);
 			actions++;
+		}
+	}
+}
+
