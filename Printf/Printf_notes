@@ -1,0 +1,417 @@
+Printf 
+	
+	Return Values
+	
+	- Returns an integer which relates to the number of characters printed by the function
+		- This return can be a count of the string length entered e.g "I just wrote a string." return = 22.
+		- A count of the string returned by the format specifier and variadic arguments macro. "%d %p %c" return = length of the number, length of the pointer plus 1 for the character.
+		- A combination of the two. e.g "How old am I at the time of writing. %d" return = 36 characters for the string, plus 2 for the number "31".
+	
+	Parameters
+	
+	- The first parameter is a const char* pointer to a variable we will call format or fmt.
+		-  This fmt variable will be where we write our string or our format specifiers.
+		
+	- The second parameter is an ellipsis which will tell the compiler we intend to use a variadic argument.
+	
+	
+	Declaration
+	
+		#include <stdarg.h> // This is the library required to call variadic functions.
+	
+		int	ft_printf(const char *fmt, ...)
+	
+	Variables
+	
+	- Initialise an integer called "len"; This will be the value we return in the end.
+	
+	- Initialise a va_list data type for our variadic arguments. We will call this "args". It does not need to be intitialised but rather we set markers for when to begin using it an when to stop.
+		- These markers are va_start and va_end.
+		- va_start takes our va_list "args" variable as its first parameter and the fmt string as its second.
+		- va_end takes our va_list "args" as it's one and only paramater.
+		
+	- Therefore our variable declarations should look something like this:
+	
+		- int		len;
+		  va_list	args;
+		  
+		  va_start(args, fmt);
+		  
+	Error Handling
+	
+		- Error handling in printf can be achieved by checking if the value returned to our len variable is -1.
+		- Both auxilliary functions (see below) return integers which indicate the number of characters they handled. 
+		- They should be programmed in such a way that if any error occurs whether it be failure of a call to WRITE or MALLOC or undefined behaviour then we should return -1 from them.
+		
+	Closing Statements
+	
+		- To complete our ft_printf function we will declare an end to our use of the variadic arguments using va_end(args);
+		- Thereafter, if no failures have occured in the function we will return our "len" variable.
+		 
+	Extra Notes
+	
+		- The "%" sign is used by printf as a means to signal the occurence of a format specifier.
+		- Examples of format specifiers are : "d" for integers, "p" for pointers and if the user would like to actually write the "%" in plain text, they can write "%%".
+		
+		
+	Auxilliary Functions - fmt_index & printer
+	
+	
+	FMT_INDEX 
+	
+	- fmt_index will be our means of reading the information given by the user. 
+	- The function will manage the handling of plain txt or format specifier as input.
+	
+	
+	Return Values
+	
+		- Integer which relates to the number of characters handled byu the function.
+	
+	Parameters
+	
+		- The first parameter is a cont char* pointer for the text entered by the user
+		- The second is the address of the variadic arguments linked to our format specifiers.
+			- Example: int a = 5; "You scored %d points!" When "%d" is detected our variadic arguments will search for the address of an integer.
+	
+	Declaration
+			
+		- int	fmt_index(const char* fmt, va_list *args);
+				
+		And we will call fmt_index in ft_print as follows:
+		
+			- len = fmt_index(fmt, &args);
+			
+				
+	Variables
+			
+		- We declare two integers for fmt_index:
+			
+			- The first called "char_count" which will keep count of the characters read as plain text.
+			- The second called "specifier_count" which will count the characters returned by the format specifier call.
+			- Both are initialised at 0;
+			- "specifier_count" will be added to "char_count" to create the final length of our input string. Specifier count may be 0.
+			
+	Mechanics
+				
+		- A while loop is created which simply indicates that while an input string exists we will do something.
+		- Otherwise if an empty string is given then we return our "char_count" variable which was set to 0.
+				
+			Inside the While loop
+			
+			- Pointer arithmetic will be used to traverse the input string.
+				
+			- Whilst we have an existing string we will check two details using conditional statements:
+				
+			Check 1
+				
+				- Is our first character something other than a "%" ? i.e plain text.
+				- Note that the syntax of a format specifier uses the order of {letter %} or {%d}.
+				
+			- If so we may just have a plain txt character and in which case we can write this character to the standard output and increment our "char_count" variable by 1.
+			
+			- However we may also have encountered a format specifier if a "%" sign is to follow. This highlights the need for a second check.
+						
+			Check 2 
+				
+			- Is our second character a "%" sign?
+			
+			- If so then we should check the current value is not a '\0' terminating character as this would signal the end of the input string and reading beyond this shouldn't occur.
+				- If we did find our current character is a null terminator we would exit the function by returning the current value of our "char_count" variable.
+				
+			- If we find our next character is a "%" sign and our current character is not a null terminator we would pass this pointer to the format string into our "printer" function (see below).
+			- We can then equate the value of our "specifier_count" variable to the return of our printer function which is also an integer.
+			- The value stored in our "specifier_count" can then be added to the current value of our "char_count" variable.
+			
+		- We have now performed both necessary checks for the fmt_index handler and can increment the positon of our pointer to the format string by 1.
+		- Our while loop will then be reassessed and we ask is there still an existing string?
+			- If so then repeat these instructions.
+			- If not then return the "char_count" variable.
+			
+	Error Handling
+	
+		- If we experience a failure when calling our print_char function or printer function then we should return -1.
+	
+	Notes
+	
+		-
+		
+	
+	PRINTER
+	
+			
+		Printer function is our means of handling format specifier combinations which are hard-coded. In this implementation of printf, these are as follows:
+		
+			- "%c" character data type			- "%s" string of characters
+			- "%d" decimal integer				- "%i" integer
+			- "%p" pointer address(hexadecimal)		- "%u" unsigned integer
+			- "%x" lower-case hexadecimal			- "%X" upper-case hexadecimal
+			- "%%" writes a "%" sign to standard output.
+			
+		Return Values
+		
+			- Printer returns an integer which is a count of the characters returned after the conversion of format specifier to data.
+			
+		Parameters
+		
+			- Printer receives two parameters:
+			
+			- The first is a const char which is currently being pointed to byu the fmt_inex function.
+			
+			- The second is a pointer to the address of our va_list arguments (args).
+			
+		Declaration
+		
+			- static int	printer(const char fmt, va_list *args)
+		
+		Variables
+		
+			- printer uses one int variables called "len".
+			- This will be used to store the length of the string written to the standard output. 		
+		
+		Mechanics
+		
+			- len is set to 0;
+			
+			- A set of 8 conditionals are written to check whether the fmt character being pointed to is one related to a format specifier.
+				- if fmt = 'c', else if fmt = 'd', else if fmt = 'p' etc etc...
+			
+			If no match is foun then we can return the "len" variable which was set to 0;
+			
+			If we do find a match then it is at this juncture we will convert the specifier and write it's output to the standard output using WRITE.
+			
+	Ancilliary Functions - print_char / print_string / print_nbr / print_pointer / print_unsigned_i / print_hex_lower / print_hex_upper
+	
+	PRINT_CHAR
+	
+		Writes a character to the standard output.
+		
+		Return value 
+		
+			- Returns an integer 
+			- Integer is 1 if successsful and -1 if write fails
+			
+		Parameters
+		
+			- Because characters are respresented in C as integers and translate to ascii our parameter is a single integer
+			- This integer must be within the printable ascii range
+			
+		Declaration
+		
+			- int	print_char(int c)
+			
+		Mechanics
+		
+			- Calls the write function to print the character stored in c
+			
+		
+	PRINT_STRING
+	
+		Writes a string (array) of characters to the standard output.
+		
+		Return Value
+		
+			- Returns an integer
+			- If successful the return will be the length of the string written to standard output
+			- If unsuccessful, return is -1
+		
+		Parameters
+		
+			- A char pointer * to the first character of the array
+			
+		Declaration
+		
+			- int	print_string(char *s)
+		
+		Variables
+		
+			- Declare an integer , i to traverse the array.
+			
+		Mechanics
+		
+			- While the array at index i is not empty or has not yet reached the null terminator, write the value stored there to the standard output.
+			
+	PRINT_NBR
+			
+		Write a number to the standard output.
+		
+		Return Value
+		
+			- Returns an integer which is the length of the number
+			
+		Parameters
+			
+			- Take an integer as its only parameter
+			
+		Declaration
+		
+			- int	print_nbr(int n)
+			
+		Variables
+		
+			- Uses an integer variable to store the length of the number.
+			
+		Mechanics
+		
+			- print_nbr uses a helper function called num_len to first count the size of the number.
+				- num_len will return 1 if the number is 0
+				- if the number is negative num_len will add 1 character to make space for the '-' then multiply the number by -1.
+				- In any case not equal to zero, while number is != 0 we increment the length count by 1 then divide our number by 10.
+			- Firstly we hardcode the outcome of our number being the lowest integer "-2147483748", we then write this to standard output and return 11.
+			- If number is < 0 we write a '-' to the standard output then multiply the number it by -1 and call print_nbr with the new positive number.
+			- If number is > 9 we call print_nbr with the number divided by 10
+				- Following this we call print_nbr with the number modulo 10
+			- If the number is < 9 or has been reduced by previous calls of print_nbr to < 9
+				- We can then write the number to standard out put by calling print_char(1, '0' + number, 1)
+			- Return the length of the number stored in len.
+	
+	PRINT_UNSIGNED_I
+	
+		Write an unsigned integer to standard output.
+		
+		Return Value
+		
+			- Integer which relects the length of the number
+		
+		Parameters
+		
+			- An unsigned integer
+			
+		Variables
+		
+			- An integer to store the length of the number.
+			
+		Mechanics 
+		
+			- Also uses num_len to establish length of number.
+			- If number is negative we can call print_unsigned_i(n * -1) because unsigned integers cannot be negative.
+			- If number is > 9 we can call print_unsigned_i with number divided by 10.
+				- Following this we can call print_unsigned_t with number modulo 10.
+			- If number is < 9 or has been reduced to < 9 by previous calls of print_unsigned_i we can call print_char('0' + number)
+			- Return the length of the number stored in len.
+			
+	PRINT_HEX_LOWER & PRINT_HEX_UPPER
+	
+		- Write a hexadecimal number to standard output.
+		- One version is for lower-case hex and the other is upper case hex.
+		
+		Return Value
+		
+			- The length of the hexadecimal written to standard output.
+		
+		Parameters
+		
+			- An unsigned integer
+			
+		Variables
+		
+			- integer called "len" to store the length of the hexadecimal number.
+			- char * pointer to store an array of characters "0123456789abcdef" (Upper-case for second implementation.)
+			- char * pointer called str to store a dynamically allocated string
+			
+		Mechanics
+		
+			- num_len is used again to establish the length of the unsigned_int parameter
+				- The only difference is that while number is != 0 it is divided by base 16
+			- Once number length is established we can allocate memory with malloc for num_len * sizeof(char)+ 1
+			- Protect the malloc allocation and free str if failure.
+			- Set the last member of the array to null terminator.
+			- If number is zero set the first array member to hex_letter_array[0]
+			- While our number is != 0 we will begin from the back of our array
+				- Setting str[--len] = hex[number % 16]
+				- Then reassigning the value of our number to our number divided by 16.
+			- Print_string can then be used to write our hexadecimal to the standard output
+			- A basic strlen function can be used to count the length of our string
+			- Save the length of our string in len
+			- Free the allocated memory of string
+			- Return len variable
+			
+	PRINT_POINTER
+	
+		- Prints a pointer address to the standard output. 
+		- This is technically identical to a hexadecimal as addresses are hexadecimal numbers.
+		- The only difference is the "0x" which appears before the hexadeciaml number.
+		
+		Return Value
+		
+			- Length of the hexadecimal written to standard output
+			
+		Parameters
+			
+			- A  void* pointer to a memory address
+			
+		Variables
+		
+			- integer called "len" to store the length of the address.
+			- char *pointer called hex which stores the lower-case hex array.
+			- char * pointer called str to store our dynamically allocated string.
+			- unsigned long called 'i' used to cast the address to an unsigned long integer.
+			
+		Mechanics 
+			
+			- The print_pointer function works almost identically to the previous function print_hex_lower.
+			- Therefore we note only the parts where it deviates from the previous function.
+			- In order to take our void * pointer address and make it useable we will cast it to an unsigned long integer. 
+				- i = (unsigned long) parameter_name;
+			- From here on we can use the unsigned integer as we did in print_hex_lower. 
+			- The second difference in this function is that we must manually write the "0x" to standard output before we print our hexadecimal string.
+				- This can be achieved after we store the length of our string in len by using write(1, "0x", 2);
+			- Finally we must remember that our final return value now needs an addition of 2 to compensate for the extra two characters written.
+			- Return len variable
+			 	
+			
+			
+			
+			
+			
+			
+				  
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+	
+	
+	
