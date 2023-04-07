@@ -36,5 +36,6 @@ int	main(int argc, char **argv)
 	if (argc < 7)
 		return (short_sort(&head_a,&head_b), 0);
 	radix_sort(&head_a, &head_b);
+	free_stack(&head_a);
 	return (0);
 }

@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
-# include <stdio.h>
 # include <limits.h>
 # include <unistd.h>
 
@@ -27,6 +26,8 @@ typedef struct node
 }t_node;
 
 void	error_message(void);
+
+void	free_stack(t_node **head_a);
 
 void	radix_sort(t_node **head_a, t_node **head_b);
 

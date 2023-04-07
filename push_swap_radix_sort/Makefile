@@ -12,11 +12,11 @@
 
 NAME = push_swap
 
-SRC = add_back.c add_front.c check_duplicate.c error_message.c ft_atoi.c \
-      is_a_sorted.c is_digit.c largest_n.c last_node.c list_size.c merge.c \
-      node_init.c push_a.c push_b.c push_swap.c radix_sort.c rank_stack.c \
-      reverse_rotate_a.c reverse_rotate_b.c rotate_a.c rotate_b.c short_sort.c \
-      sort_three.c swap_a.c swap_b.c valid_integer.c
+SRC = add_back.c add_front.c check_duplicate.c error_message.c free_stack.c \
+      ft_atoi.c is_a_sorted.c is_digit.c largest_n.c last_node.c list_size.c \
+      merge.c node_init.c push_a.c push_b.c push_swap.c radix_sort.c \
+      rank_stack.c reverse_rotate_a.c reverse_rotate_b.c rotate_a.c rotate_b.c \
+      short_sort.c sort_three.c swap_a.c swap_b.c valid_integer.c
 
 OBJECTS = $(SRC:.c=.o)
 
