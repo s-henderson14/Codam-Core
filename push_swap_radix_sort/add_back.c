@@ -15,7 +15,7 @@
 void	add_back(t_node **list, t_node *n)
 {
 	t_node	*tmp;
-	
+
 	tmp = *list;
 	if (tmp == NULL)
 	{	

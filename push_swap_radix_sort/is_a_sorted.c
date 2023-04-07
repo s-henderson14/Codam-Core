@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   is_a_sorted.c                                        :+:    :+:            */
+/*   is_a_sorted.c                                        :+:    :+:          */
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -28,7 +28,7 @@ int	is_a_sorted(t_node **head_a)
 		else
 		{
 			sorted = 0;
-			break;
+			break ;
 		}
 		tmp1 = tmp2;
 		tmp2 = tmp2->next;

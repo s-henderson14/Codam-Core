@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   short_sort.c                                        :+:    :+:            */
+/*   short_sort.c                                        :+:    :+:           */
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -11,21 +11,19 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-	
-void short_sort(t_node **head_a, t_node **head_b)
+
+void	short_sort(t_node **head_a, t_node **head_b)
 {
-	int	size;	
-	
+	int	size;
+
 	if (is_a_sorted(head_a))
-		exit(0);	
+		exit(0);
 	size = list_size(head_a);
 	if (list_size(head_a) == 5)
 	{	
 		push_b(head_a, head_b);
 		push_b(head_a, head_b);
 		sort_three(head_a);
-		if ((*head_b)->value < (*head_b)->next->value)
-			swap_b(head_b);
 	}
 	else if (list_size(head_a) == 4)
 	{	
@@ -34,6 +32,8 @@ void short_sort(t_node **head_a, t_node **head_b)
 	}
 	else if (list_size(head_a) == 3)
 		sort_three(head_a);
+	else if (list_size(head_a) == 2 && (*head_a)->value == largest_n(head_a))
+		swap_a(head_a);
 	while (list_size(head_a) != size)
 		merge(head_a, head_b);
 }
@@ -60,8 +60,3 @@ void short_sort(t_node **head_a, t_node **head_b)
 	short_sort(&head_a, &head_b);
 	print_node(head_a);
 }*/
-
-
-	
-
-

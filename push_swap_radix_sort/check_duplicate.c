@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   valid_integer.c                                    :+:    :+:            */
+/*   check_duplicate.c                                     :+:    :+:         */
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/03/06 13:02:21 by shenders      #+#    #+#                 */
-/*   Updated: 2023/03/06 13:04:59 by shenders      ########   odam.nl         */
+/*   Created: 2023/03/06 09:17:32 by shenders      #+#    #+#                 */
+/*   Updated: 2023/03/06 11:03:02 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	valid_integer(char *str)
+int	check_duplicate(t_node **head, int value)
 {
-	int	i;
+	t_node	*tmp;
 
-	i = 0;
-	if (str[i] == '-')
-	{	
-		if (!str[1])
-			return (0);
-		i++;
-	}
-	while (str[i])
+	tmp = *head;
+	while (tmp != NULL)
 	{
-		if (!is_digit(str[i]))
-			return (0);
-		i++;
+		if (tmp->value == value)
+			error_message();
+		tmp = tmp->next;
 	}
-	return (1);
-}
+	return (0);
+}	

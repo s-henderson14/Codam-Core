@@ -19,21 +19,21 @@ void	sort_three(t_node **head)
 
 	mid = (*head)->next;
 	last = last_node(*head);
-	if ((*head)->value == largest_number(head) && mid->value > last->value) 
+	if ((*head)->value == largest_n(head) && mid->value > last->value)
 	{	
 		swap_a(head);
 		reverse_rotate_a(head);
 	}
-	else if ((*head)->value == largest_number(head) && mid->value < last->value)
+	else if ((*head)->value == largest_n(head) && mid->value < last->value)
 		rotate_a(head);
-	else if (mid->value == largest_number(head) && (*head)->value > last->value)
+	else if (mid->value == largest_n(head) && (*head)->value > last->value)
 		reverse_rotate_a(head);
-	else if (mid->value == largest_number(head) && (*head)->value < last->value)
-	{  
+	else if (mid->value == largest_n(head) && (*head)->value < last->value)
+	{
 		swap_a(head);
 		rotate_a(head);
 	}
-	else if (last->value == largest_number(head) && (*head)->value > mid->value)
+	else if (last->value == largest_n(head) && (*head)->value > mid->value)
 		swap_a(head);
 }
 

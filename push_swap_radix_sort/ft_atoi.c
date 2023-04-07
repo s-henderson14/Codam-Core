@@ -14,27 +14,25 @@
 
 int	ft_atoi(const char *str)
 {
-	int	index;
-	int	number;
-	int	minus;
+	int		index;
+	unsigned long	number;
+	int		minus;
+	int		int_ret;
 
 	index = 0;
 	number = 0;
 	minus = 1;
-	while (str[index] != '\0')
-	{	
-		if (!valid_integer(str[index]))
-				return (0);
-		index++;
-	}
-	index = 0;
 	if (str[index] == 45)
 	{	
 		minus = minus * (-1);
 		index++;
 	}
 	while (str[index] >= 48 && str[index] <= 57)
+	{
 		number = (number * 10) + (str[index++] - '0');
-	return (number * minus);
+		if (number > INT_MAX)
+			error_message();
+	}
+	int_ret = (int)number;
+	return (int_ret * minus);
 }
-

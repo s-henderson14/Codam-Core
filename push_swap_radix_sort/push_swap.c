@@ -18,28 +18,23 @@ int	main(int argc, char **argv)
 	t_node	*head_a;
 	t_node	*node_a;
 	t_node	*head_b;
-	
+
 	i = 1;
 	head_a = NULL;
 	if (argc <= 2)
 		exit(0);
 	while (i < argc)
-	{		
+	{	
+		if (!valid_integer(argv[i]))
+			error_message();
 		node_a = node_init(ft_atoi(argv[i]));
+		check_duplicate(&head_a, node_a->value);
 		add_back(&head_a, node_a);
-		if (is_duplicate(&head_a) == 1 ) 
-			{	
-				write(2, "Error\n", 6);
-				exit (0);
-			}
 		i++;
 	}
 	head_b = NULL;
 	if (argc < 7)
-	{	
-		short_sort(&head_a, &head_b);
-		return (0);
-	}
+		return (short_sort(&head_a,&head_b), 0);
 	radix_sort(&head_a, &head_b);
 	return (0);
 }

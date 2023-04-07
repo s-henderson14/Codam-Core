@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   valid_integer.c                                    :+:    :+:            */
+/*   largest_n.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/03/06 13:02:21 by shenders      #+#    #+#                 */
-/*   Updated: 2023/03/06 13:04:59 by shenders      ########   odam.nl         */
+/*   Created: 2023/03/02 16:31:45 by shenders      #+#    #+#                 */
+/*   Updated: 2023/03/02 17:40:23 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	valid_integer(char *str)
+int	largest_n(t_node **head)
 {
-	int	i;
+	t_node	*tmp;
+	int		largest_num;
 
-	i = 0;
-	if (str[i] == '-')
+	tmp = *head;
+	largest_num = tmp->value;
+	while (tmp-> next != NULL)
 	{	
-		if (!str[1])
-			return (0);
-		i++;
+		if ((tmp->next)->value > largest_num)
+			largest_num = (tmp->next)->value;
+		tmp = tmp->next;
 	}
-	while (str[i])
-	{
-		if (!is_digit(str[i]))
-			return (0);
-		i++;
-	}
-	return (1);
+	return (largest_num);
 }
