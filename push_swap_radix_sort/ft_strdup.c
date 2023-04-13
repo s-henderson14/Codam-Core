@@ -1,38 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   push_swap.c                                       :+:    :+:            */
+/*   ft_strdup.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/03/03 10:15:58 by shenders      #+#    #+#                 */
-/*   Updated: 2023/03/17 17:36:31 by shenders      ########   odam.nl         */
+/*   Created: 2022/10/16 17:58:06 by shenders      #+#    #+#                 */
+/*   Updated: 2022/11/13 17:27:30 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
-{
-	int	i;
-	t_node	*head_a;
-	t_node	*head_b;
+char	*ft_strdup(const char *s1);
 
-	i = 1;
-	head_a = NULL;
-	if (argc < 2)
-		exit(0);
-	else if (argc == 2)
-		argc = parser(argv[i], &head_a);
-	else
-		stack_init(i, argv, &head_a);
-	head_b = NULL;
-	if (argc < 7)
-	{	
-		short_sort(&head_a,&head_b);
+char	*ft_strdup(const char *s1)
+{
+	char	*buff;
+	int		len;
+
+	len = 0;
+	while (s1[len] != '\0')
+		len++;
+	buff = (char *) malloc (len * sizeof(char) + 1);
+	if (!buff)
 		return (0);
-	}
-	radix_sort(&head_a, &head_b);
-	free_stack(&head_a);
-	return (0);
+	else
+	{	
+		ft_memcpy(buff, s1, len);
+		buff[len] = '\0';
+		return (buff);
+	}		
 }
+
+/*int	main(void)
+{
+	char	string[] = "Ya dun know";
+
+	printf("%s\n", ft_strdup(string));
+	printf("%s\n", strdup(string));
+}*/

@@ -1,38 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   push_swap.c                                       :+:    :+:            */
+/*   ft_memcpy.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/03/03 10:15:58 by shenders      #+#    #+#                 */
-/*   Updated: 2023/03/17 17:36:31 by shenders      ########   odam.nl         */
+/*   Created: 2022/10/06 09:28:32 by shenders      #+#    #+#                 */
+/*   Updated: 2022/11/13 17:13:27 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
-{
-	int	i;
-	t_node	*head_a;
-	t_node	*head_b;
+void	*ft_memcpy(void *dst, const void *src, size_t n);
 
-	i = 1;
-	head_a = NULL;
-	if (argc < 2)
-		exit(0);
-	else if (argc == 2)
-		argc = parser(argv[i], &head_a);
-	else
-		stack_init(i, argv, &head_a);
-	head_b = NULL;
-	if (argc < 7)
-	{	
-		short_sort(&head_a,&head_b);
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	char	*pdst;
+	char	*psrc;
+
+	pdst = (char *) dst;
+	psrc = (char *) src;
+	if (!psrc && !dst)
 		return (0);
+	while (n != 0)
+	{	
+		*pdst = *psrc;
+		pdst++;
+		psrc++;
+		n--;
 	}
-	radix_sort(&head_a, &head_b);
-	free_stack(&head_a);
-	return (0);
+	return (dst);
 }
+
+/*int	main(void)
+{
+	char	dst[] = "Hello";
+	char	src[] = "Tryit";
+
+	printf("%s\n", ft_memcpy(dst, src, 3));
+	printf("%s\n", memcpy(dst, src, 3));
+	return (0);
+}*/

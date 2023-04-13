@@ -25,6 +25,21 @@ typedef struct node
 
 }t_node;
 
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+
+char	*ft_strdup(const char *s1);
+
+size_t	word_len(const char *s, char c);
+
+size_t	ft_strlen(const char *s);
+
+char	**ft_split(char const *s, char c);
+
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+
+
+void	free_m(char **strings);
+
 void	error_message(void);
 
 void	free_stack(t_node **head_a);
@@ -61,6 +76,10 @@ void	merge(t_node **head_a, t_node **head_b);
 
 void	rank_stack(t_node **head);
 
+void	stack_init(int i, char **argv, t_node **head_a);
+
+int		parser(char *arg_string, t_node **head_a);
+
 int		ft_atoi(const char *str);
 
 int		list_size(t_node **head);
@@ -72,6 +91,8 @@ int		is_digit(int c);
 int		is_a_sorted(t_node **head_a);
 
 int		check_duplicate(t_node **head, int value);
+
+int		word_count(const char *s, char c);
 
 int		largest_n(t_node **head);
 
