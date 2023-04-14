@@ -6,38 +6,82 @@
 #    By: shenders <shenders@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/24 10:55:55 by shenders          #+#    #+#              #
-#    Updated: 2023/03/17 14:10:37 by shenders      ########   odam.nl          #
+#    Updated: 2023/04/14 12:08:37 by shenders      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRC = add_back.c add_front.c check_duplicate.c error_message.c free_stack.c \
-      ft_atoi.c is_a_sorted.c is_digit.c ft_memcpy.c largest_n.c last_node.c \
-      list_size.c merge.c node_init.c parser.c push_a.c push_b.c push_swap.c  \
-      radix_sort.c rank_stack.c reverse_rotate_a.c reverse_rotate_b.c rotate_a.c \
-      rotate_b.c short_sort.c sort_three.c ft_split.c stack_init.c ft_strdup.c  \
-      ft_strlen.c ft_substr.c swap_a.c swap_b.c valid_integer.c
+LIBFT = libft/libft.a
 
-OBJECTS = $(SRC:.c=.o)
+CFLAGS = -g -Wall -Wextra -Werror
+
+INC = -Ilibft -Iinclude
+
+SRC_DIR = src
+SRC = add_back.c\
+	   add_front.c \
+	   check_duplicate.c\
+	   error_message.c \
+	   free_stack.c \
+	   atoi.c \
+	   is_a_sorted.c \
+	   largest_n.c \
+	   last_node.c \
+	   listsize.c \
+	   merge.c \
+	   node_init.c \
+	   parser.c \
+	   push_a.c \
+	   push_b.c \
+	   push_swap.c \
+	   radix_sort.c \
+	   rank_stack.c \
+	   reverse_rotate_a.c \
+	   reverse_rotate_b.c \
+	   rotate_a.c rotate_b.c \
+	   short_sort.c \
+	   sort_three.c \
+	   stack_init.c \
+	   swap_a.c \
+	   swap_b.c \
+	   valid_integer.c
+
+SRCS := $(addprefix $(SRC_DIR)/,$(SRC))
+
+HEADER_DIR = include
+HEADERS = push_swap.h
+HEADERS := $(addprefix $(HEADER_DIR)/, $(HEADERS))
+
+OBJ_DIR = obj
+OBJS = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRCS))
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+all: make_libft $(NAME)
 
-all: $(NAME)
+$(NAME): $(OBJS) $(LIBFT)
+	$(CC) $(OBJS) $(LIBFT) $(CFLAGS) $(INC) -o $(NAME)
 
-$(NAME): $(OBJECTS)
-	cc -o $(NAME) $(OBJECTS)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+#$(HEADERS)
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
-%.o: %.c
-	$(CC) -c $(CFLAGS) $?
+.PHONY: make_libft fclean clean re
+
+make_libft:
+	$(MAKE) -C libft
 
 clean:
-	rm -f $(OBJECTS)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -f $(NAME)
 
-re: fclean all
+re: fclean dfclean all
 
+dfclean:
+	$(MAKE) -C libft fclean
+dre:
+	$(MAKE) -C libft re
