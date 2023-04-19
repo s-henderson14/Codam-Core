@@ -55,7 +55,7 @@ void	free_m(char **strings)
 	int	i;
 
 	i = 0;
-	while (strings[i] != '\0')
+	while (!strings[i] != '\0')
 	{
 		free(strings[i]);
 		i++;

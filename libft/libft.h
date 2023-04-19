@@ -14,6 +14,18 @@
 # define LIBFT_H
 
 # include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdbool.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 100
+# endif
+
+# if BUFFER_SIZE >= INT_MAX
+#  undef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
 typedef struct s_list
 {
@@ -69,7 +81,19 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
+char	*get_substr(char *s, unsigned int start, size_t len);
+
+char	*newline_present(char *txt);
+
+char	*bytes_after_newline(char *txt);
+
+char	*readfile(int fd, char *txt_cont);
+
+char	*gnline_join(char *s1, char *s2, int free_s1);
+
 char	*ft_strjoin(char const *s1, char const *s2);
+
+char	*get_next_line(int fd);
 
 void	ft_putstr_fd(char *s, int fd);
 
