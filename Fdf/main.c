@@ -1,61 +1,30 @@
-#include <stdlib.h>
-#include <mlx.h>
-#include <X11/keysym.h>
-#include <X11/X.h>
-#include <stdio.h>
+#include "../include/MLX42/MLX42.h"
+#include <unistd.h>
 
-# define WINDOW_WIDTH 1600
-# define WINDOW_HEIGHT 1300
-# define MLX_ERROR 1
-
-typedef struct s_data
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-}	t_data;
-
-int	handle_no_event(void *data)
+mlx_closefunc close_window()
 {	
+	write(1, "Window Closed\n", 14);
 	return (0);
 }
 
-int	handle_keypress(int keysym, t_data *data)
+int	main(void)
 {
-	if (keysym == XK_Escape)
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	printf("Keypress: %d\n", keysym);
+	mlx_t		*mlx;
+	mlx_image_t	*img;
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
+	mlx = mlx_init(1000, 1000, "Hello, World!", false);
+	img = mlx_new_image(mlx, 500, 500);
+	while (x != 500)
+		mlx_put_pixel(img, x++, 250, 0xFFFFFF);
+	while (y != 500)
+		mlx_put_pixel(img, 250, y++, 0xFFFFFF);
+	mlx_image_to_window(mlx , img, 250, 250);
+	mlx_loop(mlx);
+	mlx_close_hook(mlx, close_window(),);
+	mlx_terminate(mlx);
 	return (0);
 }
-
-int	handle_keyrelease(int keysym, t_data *data)
-{	
-	printf("Keyrelease: %d\n", keysym);
-	return (0);
-}
-
-int main(void)
-{
-	t_data	data;
-
-	data.mlx_ptr = mlx_init();
-	if (data.mlx_ptr == NULL)
-		return (MLX_ERROR);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "Windoe Wun"); 
-	if (data.win_ptr == NULL)
-	{	
-		free(data.win_ptr);
-		return (MLX_ERROR);
-	}
-	/*HOOK SETUP*/
-	mlx_loop_hook(data.mlx_ptr, &handle_no_event, &data);
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
-	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &handle_keyrelease, &data);
-
-	//mlx_key_hook(data.win_ptr, &handle_input, &data);
-	
-	mlx_loop(data.mlx_ptr);
-
-	mlx_destroy_display(data.mlx_ptr);
-	free(data.mlx_ptr);
-}
-
