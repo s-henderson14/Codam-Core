@@ -19,9 +19,9 @@
 
 typedef struct
 {	
-	int	x_pos;
-	int	y_pos;
-	int	**height;
+	int	width;
+	int	height;
+	int	**altitude;
 	
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -65,25 +65,72 @@ int	map_width(char *map)
 	return (width);
 }
 
-/*char	**parse_map(fdf *data, char *map)
+void	place_coordinate(int *altitude, char *row)
+{
+	char	**coordinate;
+	int	i;
+
+	coordinate = ft_split(row, ' ');
+	i = 0;
+	while (coordinate[i])
+	{
+		altitude[i] = ft_atoi(coordinate[i]);
+		free(coordinate[i]);
+		i++;
+	}
+	free(coordinate);
+}
+void	parse_map(fdf *map, char *file)
 {
 	int	fd;
+	int	i;
+	char	*row;
 
-	fd = open (map, O_RDONLY);
-	data->y_pos = map_height(map);
-	data->x_pos = map_width(map);
-}*/
+	fd = open (file, O_RDONLY);
+	map->height = map_height(file);
+	map->width = map_width(file);
+	map->altitude = (int**)malloc(sizeof(int*) * (map->height + 1));
+	i= 0;
+	while (i <= map->height)
+		map->altitude[i++] =  (int*)malloc(sizeof(int) * (map->width + 1));
+	fd = open(file, O_RDONLY);
+	i = 0;
+	while (1)
+	{	
+		row = get_next_line(fd);
+		if (!row)
+			break;
+		place_coordinate(map->altitude[i], row);
+		free(row);
+		i++;
+	}
+	map->altitude[i] = NULL;
+}
 
-int	main(void)
+int	main(int argc, char **argv)
 {	
-	printf("MAP_HEIGHT = %d\nMAP_WIDTH = %d\n", map_height("42.fdf"), map_width("42.fdf"));
-
-	/*	fdf	*data;
-	int	fd;
+	fdf	*map;
+	int	i;
+	int	j;
 	
-	data = (fdf*)malloc(sizeof(fdf));
-	fd = open("42.fdf", O_RDONLY);
-*/
+	(void)argc;
+	map = (fdf*)malloc(sizeof(fdf));
+	i = 0;
+	parse_map(map, argv[1]);
+	while (i < map->height)
+	{
+		j = 0;
+		while (j < map->width)
+		{
+			printf("%d  ", map->altitude[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+	return (0);
+}
+
 	
 /*	mlx_t		*mlx;
 	mlx_image_t	*img;
@@ -101,5 +148,3 @@ int	main(void)
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	*/
-	return (0);
-}
