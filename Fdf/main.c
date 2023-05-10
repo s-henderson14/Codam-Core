@@ -11,8 +11,11 @@
 /* ************************************************************************** */
 
 #include "../include/MLX42/MLX42.h"
+#include "../../libft/libft.h"
 #include <unistd.h>
 #include <stdlib.h>
+#include <fcntl.h>
+#include <stdio.h>
 
 typedef struct
 {	
@@ -22,31 +25,67 @@ typedef struct
 	
 	void	*mlx_ptr;
 	void	*win_ptr;
-}			fdf;
+}		fdf;
 
-char	**parse_map(int fd)
+int	map_height(char *map)
+{	
+	int	fd;
+	int	height;
+	
+	fd = open(map, O_RDONLY);
+	height = 0;
+	while (get_next_line(fd))
+		height++;
+	close(fd);
+	return (height);
+}
+
+int	map_width(char *map)
 {
+	int	fd;
+	int	width;
+	int	i;
 	char	*line;
-	char	*map;
-	char	**full_map;
+	char	**args;
 
-	map = NULL;
-	while (1)
+	fd = open (map, O_RDONLY);
+	width = 0;
+	i = 0;
+	line = get_next_line(fd);
+	if (!line)
+		return (-1);
+	args = ft_split(line, ' ');
+	while (args[i])
 	{	
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		map = ft_strjoin(map, line);
-		if (!map)
-			exit(0);
+		width++;
+		i++;
 	}
-	full_map = ft_split(map, '\n');
-	return (full_map);
-}	
+	free(line);
+	close(fd);
+	return (width);
+}
+
+/*char	**parse_map(fdf *data, char *map)
+{
+	int	fd;
+
+	fd = open (map, O_RDONLY);
+	data->y_pos = map_height(map);
+	data->x_pos = map_width(map);
+}*/
 
 int	main(void)
-{
-	mlx_t		*mlx;
+{	
+	printf("MAP_HEIGHT = %d\nMAP_WIDTH = %d\n", map_height("42.fdf"), map_width("42.fdf"));
+
+	/*	fdf	*data;
+	int	fd;
+	
+	data = (fdf*)malloc(sizeof(fdf));
+	fd = open("42.fdf", O_RDONLY);
+*/
+	
+/*	mlx_t		*mlx;
 	mlx_image_t	*img;
 
 	mlx = mlx_init(1000, 1000, "Hello, World!", false);
@@ -61,5 +100,6 @@ int	main(void)
 	mlx_image_to_window(mlx , img, 250, 250);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
+	*/
 	return (0);
 }
