@@ -122,7 +122,7 @@ int	main(int argc, char **argv)
 		j = 0;
 		while (j < map->width)
 		{
-			printf("%d  ", map->altitude[i][j]);
+			printf("%3d  ", map->altitude[i][j]);
 			j++;
 		}
 		printf("\n");
