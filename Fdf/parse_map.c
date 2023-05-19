@@ -5,18 +5,18 @@
 /*                                                     +:+                    */
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/05/12 07:19:10 by shenders      #+#    #+#                 */
-/*   Updated: 2023/05/12 07:50:28 by shenders      ########   odam.nl         */
+/*   Created: 2023/05/18 12:58:19 by shenders      #+#    #+#                 */
+/*   Updated: 2023/05/18 13:42:33 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf.h"
 
 int	map_height(char *map)
-{	
+{
 	int	fd;
 	int	height;
-	
+
 	fd = open(map, O_RDONLY);
 	height = 0;
 	while (get_next_line(fd))
@@ -27,9 +27,9 @@ int	map_height(char *map)
 
 int	map_width(char *map)
 {
-	int	fd;
-	int	width;
-	int	i;
+	int		fd;
+	int		width;
+	int		i;
 	char	*line;
 	char	**args;
 
@@ -50,45 +50,48 @@ int	map_width(char *map)
 	return (width);
 }
 
-void	load_coordinate(int *altitude, char *row)
+void	save_point(int *point, char *row)
 {
 	char	**coordinate;
-	int	i;
-
+	int		i;
+	
 	coordinate = ft_split(row, ' ');
 	i = 0;
 	while (coordinate[i])
 	{
-		altitude[i] = ft_atoi(coordinate[i]);
+		point[i] = ft_atoi(coordinate[i]);
 		free(coordinate[i]);
 		i++;
 	}
 	free(coordinate);
 }
 
-void	parse_map(fdf *map, char *file)
-{
-	int	fd;
-	int	i;
-	char	*row;
 
-	fd = open (file, O_RDONLY);
+void parse_map(t_map *map, char *file)
+{	
+	int		fd;
+	char	*row;
+	int		i;
+
 	map->height = map_height(file);
 	map->width = map_width(file);
-	map->altitude = (int**)malloc(sizeof(int*) * (map->height + 1));
-	i= 0;
+	map->points = (int **)malloc(sizeof(int*) * (map->height + 1));
+	i = 0;
 	while (i <= map->height)
-		map->altitude[i++] =  (int*)malloc(sizeof(int) * (map->width + 1));
+		map->points[i++] = (int*)malloc(sizeof(int) * (map->width + 1));
 	fd = open(file, O_RDONLY);
 	i = 0;
 	while (1)
-	{
+	{	
 		row = get_next_line(fd);
 		if (!row)
 			break;
-		load_coordinate(map->altitude[i], row);
+		save_point(map->points[i], row);
 		free(row);
 		i++;
 	}
-	map->altitude[i] = NULL;
+	close(fd);
+	map->points[i] = NULL;
+
 }
+
