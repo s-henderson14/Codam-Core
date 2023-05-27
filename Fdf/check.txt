@@ -1,0 +1,41 @@
+10-2.fdf - Render successfully but looks a liitle odd (lacking visible elevation)
+
+42.fdf - Renders successfully and looks good
+
+10-70.fdf - Renders successfully  - Has two odd looking lines at zero height.
+
+50-4.fdf - Failed to render - (x < image->width && Pixel is out of bounds)
+
+100-6.fdf - Failed to render - (y < image->height && Pixel is out of bounds)
+
+basictest.fdf - Renders successfully - Just 1 odd looking line at zero height.
+
+20-60.fdf - Failed to render - (y < image->height && Pixel is out of bounds) 
+
+elem-col.fdf - Renders successfully and looks ok.
+
+elem-fract.fdf - Failed to render (y < image->height && "Pixel is out of bounds")
+
+elem.fdf - Renders successfully and looks ok.(IS THERE A DIFFERENCE BETWEEN elem-col.fdf??)
+
+elem2.fdf - Failed to render - (x < image->width && "Pixel is out of bounds")
+
+julia.fdf - Failed to render - (y < image->height && "Pixel is out of bounds")
+
+mars.fdf - (y < image->height && "Pixel is out of bounds")
+
+pentenegpos.fdf - Renders successfully - no comment
+
+plat.fdf - Failed to render - (x < image->width && "Pixel is out of bounds")
+
+pnp_flat.fdf - Renders successfully - Rendered empty grid
+
+pylon.fdf - Failed to render(x < image->width && "Pixel is out of bounds")
+
+pyra.fdf - Failed to render - (x < image->width && "Pixel is out of bounds")
+
+pyramide.fdf - Failed to render - (x < image->width && "Pixel is out of bounds") 
+
+t1.fdf - Failed to render - (y < image->height && "Pixel is out of bounds")
+
+t2.fdf - Failed to render - (y < image->height && "Pixel is out of bounds")
