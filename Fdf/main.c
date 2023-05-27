@@ -6,7 +6,7 @@
 /*   By: shenders <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/18 12:54:32 by shenders      #+#    #+#                 */
-/*   Updated: 2023/05/19 12:07:26 by shenders      ########   odam.nl         */
+/*   Updated: 2023/05/27 08:53:38 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	//draw_line(10, 10, 600, 300, map);
 	map->scale = 20;
 	render_map(map);
-	mlx_image_to_window(map->mlx,map->img, 0, 0);
+	mlx_image_to_window(map->mlx,map->img, 300, 300);
 	mlx_loop(map->mlx);
 	mlx_terminate(map->mlx);
 	return (0);
