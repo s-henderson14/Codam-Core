@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parse_map.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: shenders <marvin@codam.nl>                   +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/05/18 12:58:19 by shenders      #+#    #+#                 */
-/*   Updated: 2023/05/27 08:38:29 by shenders      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/18 12:58:19 by shenders          #+#    #+#             */
+/*   Updated: 2023/06/02 07:43:36 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf.h"
 
-int	map_height(char *map)
+int	find_height(char *map)
 {
 	int	fd;
 	int	height;
@@ -25,7 +25,7 @@ int	map_height(char *map)
 	return (height);
 }
 
-int	map_width(char *map)
+int	find_width(char *map)
 {
 	int		fd;
 	int		width;
@@ -73,8 +73,8 @@ void parse_map(t_map *map, char *file)
 	char	*row;
 	int		i;
 
-	map->height = map_height(file);
-	map->width = map_width(file);
+	map->height = find_height(file);
+	map->width = find_width(file);
 	map->points = (int **)malloc(sizeof(int*) * (map->height + 1));
 	i = 0;
 	while (i <= map->height)
