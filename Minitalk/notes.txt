@@ -1,0 +1,51 @@
+Inter Process Communication (IPC) is a mechanism that involves communication of one process with another process. This communication
+can be one of two types:
+	+ Between related processes, initiating from only one process, such as parent and child processes.
+	+ Between unrelated processes, or two or more different processes.
+	
+Signals - A signal is a mechanism to communciation between multiple processes by way of signaling. This means a source process
+will send a signal (recognised by a number) and the destination process will hadnle it accordingly.
+
+SIGNAL HANDLERS
+	void	signal_handler(int signal_number);
+	
+	A signal handler is a function which describes what to do with a particular signal. It will take an integer as a parameter which is the signals number.
+
+SIGNAL REGISTERING
+	SIGNAL()
+	void	signal(int signal_number, void* ptr_to_handler);
+	
+	The signal function can be used to assign a signal handler function to a specific signal. To achieve this registration it takes two parameters. 1 is a an integer denoting the signal_number and the other is a pointer to the signal handler function.
+
+When a signal occurs, the operating system interrupts the normal flow of your program and invokes the corresponding signal handler function. The signal handler can perform specific actions or implement custom behavior in response to the signal.
+	
+	SIGACTION()
+	int	sigaction(int signum, const struct sigaction *act, struct sigaction *old);
+
+	The struct sigaction is a structure that holds information about the signal handling behavior. It typically includes the following members:	
+	
+	SIGEMPTYSET()
+	int	sigemptyset(sigset_t *set);
+	
+	The sigemptyset function is used to initialise an empty signal set. It is typically used in conjunction with other functions related to signal handling to maniupulate and modify sets of signals.
+	In signal handling, a signal set is data structure which represents a collection of signals. It is typically implemented as a bitset, where each bit corresponds to a specific signal. The sigset_t type is used  to represent a signal set.
+	The sigemptyset () function initialises a signal set pointed to by the 'set' argument, setting all the bits to zero thus creating an empty signal set.
+	Once initialised, other functions can be used to modify the signal set such as adding signals to the set or removing signals from it.
+	NOTE: sigemptyset () returns an integer. 0 on success or -1 for an error.
+
+	SIGADDSET()
+	int	sigaddset(sigset_t *set, int signal_number);
+	The sigaddset() function modifies the set pointed to by the 'set' parameter by adding the signal specified by the sig_number parameter.
+
+	KILL()
+	int	kill(pid_t oid, int signal);
+	The kill() function takes two arguments. 
+		+ 'pid' represents the process ID of the target process. 
+		+ 'sig' represents the signal to be sent
+	RETURN VALUE : integer. 0 for success and -1 for failure
+	
+
+	SIGUSR1 & SIGUSR2
+	
+	Sigusr1 and Sigusr2 are user defined signals in the C programming language. They are part of the set of signals that can be used by applications for inter process communication or to implement custom functionality.
+	Both Sigsur1 and Sigsur2 are represented by a macro constant SIGSUR1 and SIGSUR2 which are integer values
