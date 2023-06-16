@@ -5,7 +5,7 @@ void make_iso(int *x , int *y, int z)
 	double	angle;
 	int		temp;
 
-	angle = 0.75;
+	angle = 0.6;
 	temp = *x;
 	
 	*x = (int)(temp - *y) * cos(angle);

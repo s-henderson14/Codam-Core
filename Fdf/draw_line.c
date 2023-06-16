@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 07:50:46 by shenders          #+#    #+#             */
-/*   Updated: 2023/06/02 17:09:47 by shenders         ###   ########.fr       */
+/*   Updated: 2023/06/16 17:05:54 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,8 @@ void    draw_line(int x0, int y0, int x1, int y1, t_map *map)
     int z0;
     int z1;
 
-    z0 = map->points[(int)y0][(int)x0];
+    z0 = map->points[(int)y0][(int)x0]; // Creating points to describe altitude taken from 2D array. 
     z1 = map->points[(int)y1][(int)x1];
-
-	/*make_iso(&x0, &y0, z0);
-    make_iso(&x1, &y1, z1);*/
 
     x0 -= map->width / 2;
     y0 -= map->height / 2;
@@ -40,11 +37,11 @@ void    draw_line(int x0, int y0, int x1, int y1, t_map *map)
     z0 *= map->scale;
     z1 *= map->scale;
     
-    make_iso(&x0, &y0, z0);
-    make_iso(&x1, &y1, z1);
+    make_iso(&x0, &y0, z0 / map->height);
+    make_iso(&x1, &y1, z1 / map->height);
     
     if (z0 || z1 > 0)
-        map->colour = 0x4C82E6; // Red color for higher elevation
+        map->colour = 0xFF9EF7; // Red color for higher elevation
     else
         map->colour = 0xFFFFFF; // White color for lower elevation
 
@@ -53,8 +50,8 @@ void    draw_line(int x0, int y0, int x1, int y1, t_map *map)
     x1 += WIDTH / 2;
     y1 += HEIGHT / 2;
 
-    x_diff = abs(x1 - x0);
-    y_diff = abs(y1 - y0);
+    x_diff = ft_abs(x1 - x0);
+    y_diff = ft_abs(y1 - y0);
     error = x_diff - y_diff;
     while (x0 != x1 || y0 != y1)
     {   
