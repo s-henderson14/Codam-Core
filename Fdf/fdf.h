@@ -66,6 +66,8 @@ void	render_map(t_map *map);
 
 void	error(void);
 
+void	esc_key_hook(void *param);
+
 t_draw	draw_init(int x0, int y0, int x1, int y1);
 
 #endif
