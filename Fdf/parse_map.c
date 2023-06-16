@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:58:19 by shenders          #+#    #+#             */
-/*   Updated: 2023/06/02 07:43:36 by shenders         ###   ########.fr       */
+/*   Updated: 2023/06/16 18:40:20 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 int	find_height(char *map)
 {
-	int	fd;
-	int	height;
+	int		fd;
+	int		height;
+	char	*row;
 
 	fd = open(map, O_RDONLY);
 	height = 0;
-	while (get_next_line(fd))
+	while ((row = get_next_line(fd)))
+	{	
 		height++;
+		free(row);
+	}
 	close(fd);
 	return (height);
 }
@@ -40,12 +44,15 @@ int	find_width(char *map)
 	if (!line)
 		return (-1);
 	args = ft_split(line, ' ');
+	if (!args)
+		return (-1);
 	while (args[i])
 	{
 		width++;
 		i++;
 	}
 	free(line);
+	clean_split(args);
 	close(fd);
 	return (width);
 }
@@ -94,4 +101,3 @@ void parse_map(t_map *map, char *file)
 	map->points[i] = NULL;
 
 }
-

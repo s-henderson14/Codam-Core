@@ -6,14 +6,14 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:54:32 by shenders          #+#    #+#             */
-/*   Updated: 2023/06/02 09:28:11 by shenders         ###   ########.fr       */
+/*   Updated: 2023/06/16 18:01:59 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf.h"
 
 int	main(int argc, char **argv)
-{
+{	
 	t_map	*map;
 	int		fd;
 
