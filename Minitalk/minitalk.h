@@ -6,7 +6,7 @@
 /*   By: sean <sean@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:34:40 by sean              #+#    #+#             */
-/*   Updated: 2023/06/15 18:00:03 by sean             ###   ########.fr       */
+/*   Updated: 2023/06/18 22:13:08 by sean             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,19 @@
 #include <signal.h>
 #include <stdarg.h>
 #include <limits.h>
-#include "../../libft/include/libft.h"
+#include <sys/types.h>
+#include "../libft/libft.h"
 
-void    param_count_error();
 
-void    pid_error();
+void    argc_error();
 
-void    send_signal(int signal, int pid);
+void    process_ID_error();
+
+void    send_signal(pid_t process_ID, int signal);
+
+void	send_string(pid_t process_ID, char* string);
+
+void    handle_signal(int signal, siginfo_t *info, void *context);
 
 #endif
 

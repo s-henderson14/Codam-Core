@@ -1,13 +1,13 @@
 #include "../../include/minitalk.h"
 
-void    param_count_error()
+void   argc_error()
 {
-    ft_putstr_fd("Error: not enough parameters were provided. Example: './client <server_pid> <signal>'", STDERR_FILENO);
+    ft_putstr_fd("Error: not enough parameters were provided. Example: './client <server_pid> <signal>'\n", STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }
 
-void    pid_error()
+void    process_ID_error()
 {
-    ft_putstr_fd("Error: no such PID exists", STDERR_FILENO);
+    ft_putstr_fd("Error: no such PID exists\n", STDERR_FILENO);
     exit(EXIT_FAILURE);
 }
