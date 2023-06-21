@@ -1,0 +1,19 @@
++ Makefile
+	- Fix relinking
+	- format so that files have specific directories i.e src, objs, include
+	- make it compile regardless of OS (Not a must)
+
++ Norminette
+	- Function size
+	- Usual norminette
+	- Check nothing forbidden exists
+
++ Error handling
+	- Free arrays, Free maps, free any other allocated variables
+	- Exit at any point?
+	- Leaks (Test and eliminate)
+	- Handle incorrect parameter entry
+
++ Check with someone if there are any edgecases
+
+
