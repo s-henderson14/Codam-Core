@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:58:19 by shenders          #+#    #+#             */
-/*   Updated: 2023/06/16 18:40:20 by shenders         ###   ########.fr       */
+/*   Updated: 2023/06/02 07:43:36 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,13 @@
 
 int	find_height(char *map)
 {
-	int		fd;
-	int		height;
-	char	*row;
+	int	fd;
+	int	height;
 
 	fd = open(map, O_RDONLY);
 	height = 0;
-	while ((row = get_next_line(fd)))
-	{	
+	while (get_next_line(fd))
 		height++;
-		free(row);
-	}
 	close(fd);
 	return (height);
 }
@@ -44,15 +40,12 @@ int	find_width(char *map)
 	if (!line)
 		return (-1);
 	args = ft_split(line, ' ');
-	if (!args)
-		return (-1);
-	while (args[i])
+	while (args[i] && *args[i] != 10)
 	{
 		width++;
 		i++;
 	}
 	free(line);
-	clean_split(args);
 	close(fd);
 	return (width);
 }
@@ -85,7 +78,7 @@ void parse_map(t_map *map, char *file)
 	map->points = (int **)malloc(sizeof(int*) * (map->height + 1));
 	i = 0;
 	while (i <= map->height)
-		map->points[i++] = (int*)malloc(sizeof(int) * (map->width + 1));
+		map->points[i++] = (int*)malloc(sizeof(int) * (map->width));
 	fd = open(file, O_RDONLY);
 	i = 0;
 	while (1)
@@ -99,5 +92,5 @@ void parse_map(t_map *map, char *file)
 	}
 	close(fd);
 	map->points[i] = NULL;
-
 }
+

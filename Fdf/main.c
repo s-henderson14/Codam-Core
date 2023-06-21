@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sean <sean@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:54:32 by shenders          #+#    #+#             */
-/*   Updated: 2023/06/16 18:01:59 by shenders         ###   ########.fr       */
+/*   Updated: 2023/06/19 23:33:26 by sean             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf.h"
 
 int	main(int argc, char **argv)
-{	
+{
 	t_map	*map;
 	int		fd;
 
@@ -30,3 +30,4 @@ int	main(int argc, char **argv)
 	close(fd);
 	return (0);
 }
+

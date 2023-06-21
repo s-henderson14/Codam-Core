@@ -32,4 +32,4 @@ void	render_map(t_map* map)
 		y++;
 	}
 }
-	
+
