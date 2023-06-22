@@ -13,7 +13,7 @@ void	clean_split(char **arr)
 	free(arr);
 }
 
-void	clean_array(int **points, t_map *map)
+void	clear_array(t_map *map, int **points)
 {
 	int	y;
 
@@ -25,4 +25,18 @@ void	clean_array(int **points, t_map *map)
 		y++;
 	}
 	free(points);
+}
+
+void	clear_array1(int **points)
+{
+	int	i;
+
+	i = 0;
+	while (points[i])
+	{
+		if (points != NULL)
+			free(points[i]);
+		i++;
+	}
+	exit(EXIT_FAILURE);
 }
