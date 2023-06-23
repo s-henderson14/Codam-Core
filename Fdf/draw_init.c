@@ -1,4 +1,4 @@
-#include "../../fdf.h"
+#include "../include/fdf.h"
 
 t_draw	draw_init(int x0, int y0, int x1, int y1)
 {

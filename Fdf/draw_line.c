@@ -6,11 +6,11 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 07:50:46 by shenders          #+#    #+#             */
-/*   Updated: 2023/06/22 07:28:08 by shenders         ###   ########.fr       */
+/*   Updated: 2023/06/23 20:01:22 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../fdf.h"
+#include "../include/fdf.h"
 
 void    draw_line(int x0, int y0, int x1, int y1, t_map *map)
 {   
@@ -27,15 +27,13 @@ void    draw_line(int x0, int y0, int x1, int y1, t_map *map)
     y0 -= map->height / 2;
     x1 -= map->width / 2;
     y1 -= map->height / 2; 
-    map->scale = (float)(HEIGHT / 4) / map->height;
+    map->scale = (float)(HEIGHT / 2) / map->height;
     x0 *= map->scale;
     y0 *= map->scale;
     x1 *= map->scale;
     y1 *= map->scale;
-    //z0 *= map->scale;
-    //z1 *= map->scale;
-    make_iso(&x0, &y0, z0 / 1.2);
-    make_iso(&x1, &y1, z1 / 1.2);
+    make_iso(&x0, &y0, z0);
+    make_iso(&x1, &y1, z1);
     if (z0 || z1 > 0)
         map->colour = 0xdb4d69;
     else

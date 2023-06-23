@@ -1,4 +1,16 @@
-#include "../../fdf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/22 18:30:59 by shenders          #+#    #+#             */
+/*   Updated: 2023/06/23 20:01:25 by shenders         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/fdf.h"
 
 void	error(void)
 {
@@ -6,7 +18,7 @@ void	error(void)
 	exit(EXIT_FAILURE);
 }
 
-void clean_error(t_map *map, int **arr)
+void	clean_error(t_map *map, int **arr)
 {
 	if (arr)
 		clear_array(map, arr);
@@ -15,7 +27,7 @@ void clean_error(t_map *map, int **arr)
 	exit(EXIT_FAILURE);
 }
 
-void mlx_map_error(t_map *map)
+void	mlx_map_error(t_map *map)
 {
 	mlx_delete_image(map->mlx, map->img);
 	clear_array(map, map->points);

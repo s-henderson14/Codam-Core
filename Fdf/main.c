@@ -6,11 +6,11 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:54:32 by shenders          #+#    #+#             */
-/*   Updated: 2023/06/22 16:11:59 by shenders         ###   ########.fr       */
+/*   Updated: 2023/06/23 20:01:48 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../fdf.h"
+#include "../include/fdf.h"
 
 int	main(int argc, char **argv)
 {	
@@ -21,8 +21,8 @@ int	main(int argc, char **argv)
 		error();
 	fd = file_check(argv[1]);
 	if (!fd)
-		error();		
-	map = (t_map*)malloc(sizeof(t_map));
+		error();
+	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
 		error();
 	parse_map(map, argv[1]);
