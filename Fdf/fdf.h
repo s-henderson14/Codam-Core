@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 18:22:18 by shenders          #+#    #+#             */
-/*   Updated: 2023/06/23 08:52:58 by shenders      ########   odam.nl         */
+/*   Updated: 2023/06/25 12:59:53 by shenders      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
-# include "libft/libft.h"
-# include "MLX42/include/MLX42/MLX42.h"
+# include "../libft/libft.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 # include <fcntl.h>
 # include <unistd.h>
 

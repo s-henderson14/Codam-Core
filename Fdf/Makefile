@@ -6,17 +6,17 @@
 #    By: shenders <shenders@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/16 16:43:42 by shenders          #+#    #+#              #
-#    Updated: 2023/06/23 12:32:39 by shenders         ###   ########.fr        #
+#    Updated: 2023/06/25 12:56:44 by shenders         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:= fdf
-CFLAGS	:= -fsanitize=address -g -Wall -Wextra -Werror -lasan
+CFLAGS	:= -g -Wall -Wextra -Werror
 LIBFT	:= libft/libft.a
 LIBMLX	:= MLX42
-HEADERS := -Ilibft -IMLX42/include/MLX42/.
+HEADERS := -I libft -I include -I MLX42/include/MLX42/.
 LIBS	:= $(LIBMLX)/build/libmlx42.a -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit  
-SRCS 	:= $(shell find ./MLX42/src -iname "*.c")
+SRCS 	:= $(shell find ./src -iname "*.c")
 OBJS	:= ${SRCS:.c=.o}
 
 all:  libft libmlx $(NAME)

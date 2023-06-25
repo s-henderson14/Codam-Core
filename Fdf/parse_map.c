@@ -6,7 +6,7 @@
 /*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:58:19 by shenders          #+#    #+#             */
-/*   Updated: 2023/06/23 20:01:59 by shenders         ###   ########.fr       */
+/*   Updated: 2023/06/25 13:27:47 by shenders         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int	find_height(char *map)
 	height = 0;
 	row = get_next_line(fd, 0);
 	if (!row)
+	{	
+		close (fd);
 		return (-1);
+	}
 	while (row != NULL)
 	{
 		height++;
@@ -46,10 +49,16 @@ int	find_width(char *map)
 	i = 0;
 	row = get_next_line(fd, 1);
 	if (!row)
+	{	
+		close(fd);
 		return (-1);
+	}
 	args = ft_split(row, ' ');
 	if (!args)
+	{	
+		close(fd);
 		return (free(row), -1);
+	}
 	while (args[i] && *args[i] != 10)
 	{
 		width++;
@@ -103,15 +112,14 @@ void	add_points(t_map *map, char *file)
 		free(line);
 		line = get_next_line(fd, 0);
 	}
+	free(line);
 	close(fd);
 }
 
 void	parse_map(t_map *map, char *file)
 {
-	char	*row;
 	int		i;
 
-	row = malloc(sizeof(char));
 	map->height = find_height(file);
 	map->width = find_width(file);
 	map->points = (int **) ft_calloc((map->height), sizeof (int *));
