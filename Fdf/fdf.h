@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sean <sean@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/22 18:22:18 by shenders          #+#    #+#             */
-/*   Updated: 2023/06/25 12:59:53 by shenders      ########   odam.nl         */
+/*   Created: 2023/06/04 22:19:37 by sean              #+#    #+#             */
+/*   Updated: 2023/06/26 23:17:13 by sean             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,26 @@
 # include <fcntl.h>
 # include <unistd.h>
 
-# define WIDTH 2500
-# define HEIGHT 1440
+# define WIDTH 1920
+# define HEIGHT 1080
+
+typedef struct 
+{
+	int	x;
+	int	y;
+	int	z;
+}		t_point;
+
 
 typedef struct s_map
 {
-	int			width;
-	int			height;
-	int			**points;
-	float		scale;
-	int			colour;
-	int			x_offset;
-	int			y_offset;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
+	int			width;
+	int			height;
+	t_point		**points;
+	int		scale;
+	int			colour;
 }				t_map;
 
 typedef struct s_draw
@@ -66,11 +72,11 @@ void	mlx_start(t_map *map);
 
 void	parse_map(t_map *map, char *file);
 
-void	save_point(t_map *map, int *point, char *row);
+void	save_point(t_map *map, int y, char *row);
 
-void	draw_line(int x0, int y0, int x1, int y1, t_map *map);
+void    draw_line(t_point *p0, t_point *p1, t_map *map);
 
-void 	make_iso(int *x , int *y, int z);
+void	make_iso(int *x, int *y, int z);
 
 void	render_map(t_map *map);
 
@@ -78,15 +84,15 @@ void	error(void);
 
 void	esc_key_hook(void *param);
 
-t_draw	draw_init(int x0, int y0, int x1, int y1);
+t_draw	draw_init(t_point *p0, t_point *p1);
 
 void	clean_split(char **arr);
 
-void	clear_array(t_map *map, int **points);
+void	clear_array(t_map *map, t_point **points);
 
-void	clear_array1(int **points);
+void	clear_array1(t_point **points);
 
-void	clean_error(t_map *map, int **arr);
+void	clean_error(t_map *map, t_point **arr);
 
 void	mlx_map_error(t_map *map);
 
