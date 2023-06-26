@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shenders <shenders@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sean <sean@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/22 18:31:07 by shenders          #+#    #+#             */
-/*   Updated: 2023/06/25 13:25:41 by shenders         ###   ########.fr       */
+/*   Created: 2023/06/20 19:48:15 by sean              #+#    #+#             */
+/*   Updated: 2023/06/26 23:18:10 by sean             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	clean_error(t_map *map, int **arr)
+#include "../include/fdf.h"
+
+void	clean_error(t_map *map, t_point **arr)
 {
 	if (arr)
 		clear_array(map, arr);
@@ -21,14 +23,14 @@ void	clean_error(t_map *map, int **arr)
 	exit(EXIT_FAILURE);
 }
 
-void	clear_array(t_map *map, int **points)
+void	clear_array(t_map *map, t_point **points)
 {
 	int	y;
 
 	y = 0;
 	while (y < map->height)
 	{
-		if (points != NULL)
+		if (points[y] != NULL)
 			free(points[y]);
 		y++;
 	}
@@ -55,10 +57,6 @@ void	clean_split(char **arr)
 	}
 	free(arr);
 }
-
-
-
-
 
 // void	clear_array1(int **points)
 // {
