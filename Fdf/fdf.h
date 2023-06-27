@@ -6,7 +6,7 @@
 /*   By: sean <sean@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 22:19:37 by sean              #+#    #+#             */
-/*   Updated: 2023/06/27 10:35:56 by sean             ###   ########.fr       */
+/*   Updated: 2023/06/27 12:50:14 by sean             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,12 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
-typedef struct 
+typedef struct s_point
 {
 	int	x;
 	int	y;
 	int	z;
 }		t_point;
-
 
 typedef struct s_map
 {
@@ -39,9 +38,9 @@ typedef struct s_map
 	int			width;
 	int			height;
 	t_point		**points;
-	int		scale;
+	int			scale;
 	int			colour;
-}				t_map;
+}			t_map;
 
 typedef struct s_draw
 {
@@ -74,7 +73,7 @@ void	parse_map(t_map *map, char *file);
 
 void	save_point(t_map *map, int y, char *row);
 
-void    draw_line(t_point *p0, t_point *p1, t_map *map);
+void	draw_line(t_point *p0, t_point *p1, t_map *map);
 
 void	make_iso(int *x, int *y, int z);
 
@@ -96,6 +95,8 @@ void	clean_error(t_map *map, t_point **arr);
 
 void	mlx_map_error(t_map *map);
 
-void    scale_and_offset(t_draw *draw, t_map *map);
+void	scale_and_offset(t_draw *draw, t_map *map);
+
+int		check_bound(t_map *map, int x0, int y0);
 
 #endif
