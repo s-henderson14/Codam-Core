@@ -6,10 +6,9 @@
 /*   By: sean <sean@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:58:19 by shenders          #+#    #+#             */
-/*   Updated: 2023/06/27 00:11:30 by sean             ###   ########.fr       */
+/*   Updated: 2023/06/27 12:30:05 by sean             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../include/fdf.h"
 
@@ -50,16 +49,10 @@ int	find_width(char *map)
 	i = 0;
 	row = get_next_line(fd, 1);
 	if (!row)
-	{	
-		close(fd);
-		return (-1);
-	}
+		return (close(fd), -1);
 	args = ft_split(row, ' ');
 	if (!args)
-	{	
-		close(fd);
-		return (free(row), -1);
-	}
+		return (close(fd), free(row), -1);
 	while (args[i] && *args[i] != 10)
 	{
 		width++;
@@ -67,11 +60,8 @@ int	find_width(char *map)
 	}
 	free(row);
 	clean_split(args);
-	close(fd);
-	return (width);
+	return (close(fd), width);
 }
-
-
 
 void	save_point(t_map *map, int y, char *row)
 {
@@ -124,7 +114,7 @@ void	add_points(t_map *map, char *file)
 void	parse_map(t_map *map, char *file)
 {
 	int	i;
-	
+
 	map->height = find_height(file);
 	map->width = find_width(file);
 	map->points = ft_calloc(map->height, sizeof (t_point *));
