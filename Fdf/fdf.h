@@ -6,7 +6,7 @@
 /*   By: sean <sean@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 22:19:37 by sean              #+#    #+#             */
-/*   Updated: 2023/06/26 23:17:13 by sean             ###   ########.fr       */
+/*   Updated: 2023/06/27 10:35:56 by sean             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,7 @@ void	clear_array1(t_point **points);
 void	clean_error(t_map *map, t_point **arr);
 
 void	mlx_map_error(t_map *map);
+
+void    scale_and_offset(t_draw *draw, t_map *map);
 
 #endif
